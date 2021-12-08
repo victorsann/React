@@ -120,7 +120,7 @@ Como resultado, temos uma aplicação React rodando localmente em modo de desenv
     To create a production build, use yarn build.
 
 
-<div align="center">
+<div align="center" style="border-radius: 100%;">
   <img src="https://user-images.githubusercontent.com/61476935/145259691-53cd2714-5c28-4c35-a913-9df01103c4b3.gif" style="border-radius: 100%;">
 </div>
 
