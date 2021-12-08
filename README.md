@@ -84,3 +84,5 @@ Como resultado, temos uma aplicação React rodando localmente:
 <div align="center">
   <img src="https://user-images.githubusercontent.com/61476935/145241429-2dd430d2-a21f-49e7-81ea-df01236be644.png">
 </div>
+
+<img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
