@@ -73,7 +73,7 @@ O [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7
     yarn create react-app my-app
 
 
-O comando irá criar um diretório chamado my-app dentro da pasta atual. No diretório, será gerada a estrutura inicial da aplicação e algumas dependências, as quais serão mais bem abordados adiante:
+O comando irá criar um diretório chamado my-app dentro da pasta atual. No diretório, será gerada a estrutura inicial da aplicação e algumas dependências, as quais serão mais bem abordadas adiante:
 
 
     my-app
@@ -121,6 +121,6 @@ Como resultado, temos uma aplicação React rodando localmente em modo de desenv
 
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/61476935/145259691-53cd2714-5c28-4c35-a913-9df01103c4b3.gif">
+  <img src="https://user-images.githubusercontent.com/61476935/145259691-53cd2714-5c28-4c35-a913-9df01103c4b3.gif" style="border-radius: 50%;">
 </div>
 
