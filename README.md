@@ -82,7 +82,7 @@ Estas nada mais são que alguns comandos básicos para iniciar o processo de con
 Como resultado, temos uma aplicação React rodando localmente:
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/61476935/145241429-2dd430d2-a21f-49e7-81ea-df01236be644.png">
+  <img src="https://user-images.githubusercontent.com/61476935/145259691-53cd2714-5c28-4c35-a913-9df01103c4b3.gif">
 </div>
 
 <img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
