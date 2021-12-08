@@ -7,10 +7,10 @@
 <img src="https://img.shields.io/static/v1?label=React&message=Library&color=blue&style=for-the-badge&logo=React"/>
 
 
-O React é uma biblioteca Javascript de funcionalidades para desenvolver web interfaces. Criado e mantido pelo Facebook, o React tem permanecido no topo da lista de ferramentas mais utilizadas pelos desenvolvedores, estando presente em grandes projetos como o Facebook, Whatsapp, Twetter, Yahoo Mail e até mesmo o Netflix.
+O React é uma biblioteca Javascript de funcionalidades para desenvolver web interfaces. Criado e mantido pelo Facebook, o React tem permanecido no topo da lista de ferramentas mais utilizadas pelos desenvolvedores, estando presente em grandes projetos como o Facebook, Whatsapp, Twetter, Yahoo Mail e até mesmo no Netflix.
 
 
-<h2>Caracteristicas Básicas</h2>
+<h2>Características Básicas</h2>
 
 
 Com uma estrutura declarativa e reativa baseada em components, o React possui flexibilidade suficiente para ser utilizado em pequenos trechos de uma aplicação ou para criar SPA's robustas. O uso desse modelo é vantajoso pois:
@@ -38,14 +38,15 @@ Dada esta necessidade, a documentação a seguir mostra como instalar o Node e d
 <h2>React App</h2>
 
 
-Após a instalação do Node, já é possível criar uma aplicação React totalmente do zero. Para isso, acesse o diretório onde o projeto será criado através do terminal e execute o comando a seguir:
+Após a instalação do Node, já é possível criar uma aplicação React totalmente do zero. Para isso, acesse o diretório onde o projeto será criado, através do terminal, e execute o comando a seguir:
 
     
     npx create-react-app my-app
 
 
-Um detalhe importante sobre o comando acima, provavelmente notado por quem já teve contato com o node package manager, é uso do npx, o que não se trata de um erro de digitação, mas sim de um package runner do proprío npm. 
-Com o início do run, o processo de instalação de alguns recursos básicos será iniciado, resultando nos arquivos que irão compor o porojeto e que posteriormente serão abordados de forma detalhada. Além disso, perceba que, com o fim da instalação, algumas informações foram retornadas no terminal:
+Um detalhe importante sobre o comando acima, provavelmente notado por quem já teve contato com o node package manager, é uso do npx, o que não se trata de um erro de digitação, mas sim de um package runner do próprio npm. 
+
+Com o início do run, o processo de instalação de alguns recursos básicos será iniciado, resultando nos arquivos que irão compor o porojeto e que, posteriormente, serão abordados de forma detalhada. Além disso, perceba que, com o fim da instalação, algumas informações foram retornadas no terminal:
 
 
     Inside that directory, you can run several commands:
@@ -71,18 +72,30 @@ Com o início do run, o processo de instalação de alguns recursos básicos ser
     Happy hacking!
 
 
-Estas nada mais são que alguns comandos básicos para iniciar o processo de configuração do app, sendo eles comandos yarn(package maneger recomendado que também será explicado a diante). Seguindo as recomendações, acesse a pasta my-app e inicialize o app usando um dos comando a seguir:
+Estas nada mais são que alguns comandos básicos para iniciar o processo de configuração do app, sendo eles comandos yarn(package maneger recomendado que também será explicado adiante). Seguindo as recomendações, acesse a pasta my-app e inicialize o app usando um dos comando a seguir:
 
 
     yarn start
-    
+
+<br>
+
     npm start 
 
 
 Como resultado, temos uma aplicação React rodando localmente:
 
+
+    Compiled successfully!
+    
+    You can now view my-app in the browser.
+    
+      Local:            http://localhost:3000
+      On Your Network:  http://10.201.0.3:3000
+    
+    Note that the development build is not optimized.
+    To create a production build, use yarn build.
+
+
 <div align="center">
   <img src="https://user-images.githubusercontent.com/61476935/145259691-53cd2714-5c28-4c35-a913-9df01103c4b3.gif">
 </div>
-
-<img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
