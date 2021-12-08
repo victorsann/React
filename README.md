@@ -30,49 +30,75 @@ Como foi dito, há formas distintas de utilizar o React, podendo ser simplesment
 <h2>Node</h2>
 
 
-Aplicações Web demandam o uso de uma série de recursos para diferentes funcionalidades, como packages e libs específicas. O Javascript, e por consequência aplicações que fazem uso deste, contam com o Node e seu package manager(npm) para tal. Sendo este um host de inúmeros packages e bibliotecas de terceiros que proporcionam inúmeros recurso a serem utilizados no desenvolvimento. 
+Aplicações Web demandam o uso de uma série de recursos para diferentes funcionalidades, como packages e libs específicas. O Javascript, e por consequência, aplicações que fazem uso deste contam com o Node e seu package manager(npm) para tal. Sendo este um host de inúmeros packages e bibliotecas de terceiros que proporcionam inúmeros recurso a serem utilizados no desenvolvimento. 
 
 Dada esta necessidade, a documentação a seguir mostra como instalar o Node e define algumas características importantes da ferramenta: [Node](https://github.com/VictorSantos12/Node.js)
 
+Para verificar as versões do Node e do npm isntaladas, use respectivamente:
 
-<h2>React App</h2>
+    node -v
+
+<br>
+
+    npm -v
 
 
-Após a instalação do Node, já é possível criar uma aplicação React totalmente do zero. Para isso, acesse o diretório onde o projeto será criado, através do terminal, e execute o comando a seguir:
+Certifique-se de ter instalado uma versão do Node acima da 14.0.0 e da 6+ do nmp, já que versões antigas podem não conter recursos que serão utilizados nos exemplos adiante.
 
+
+<h2>Criando React App</h2>
+
+
+Após a instalação do Node, já é possível criar uma aplicação React totalmente do zero. Para isso, acesse o diretório onde o projeto será criado, através do terminal, e execute um dos comando a seguir:
+
+
+<h3>npx</h3>
     
+
     npx create-react-app my-app
 
 
-Um detalhe importante sobre o comando acima, provavelmente notado por quem já teve contato com o node package manager, é uso do npx, o que não se trata de um erro de digitação, mas sim de um package runner do próprio npm. 
-
-Com o início do run, o processo de instalação de alguns recursos básicos será iniciado, resultando nos arquivos que irão compor o porojeto e que, posteriormente, serão abordados de forma detalhada. Além disso, perceba que, com o fim da instalação, algumas informações foram retornadas no terminal:
+O [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) é um package runner que faz parte da versão 5.2+ e maiores do npm.
 
 
-    Inside that directory, you can run several commands:
-    
-      yarn start
-        Starts the development server.
-    
-      yarn build
-        Bundles the app into static files for production.
-    
-      yarn test
-        Starts the test runner.
-    
-      yarn eject
-        Removes this tool and copies build dependencies, configuration files
-        and scripts into the app directory. If you do this, you can’t go back!
-    
-    We suggest that you begin by typing:
-    
-      cd my-app
-      yarn start
-    
-    Happy hacking!
+<h3>npm</h3>
 
 
-Estas nada mais são que alguns comandos básicos para iniciar o processo de configuração do app, sendo eles comandos yarn(package maneger recomendado que também será explicado adiante). Seguindo as recomendações, acesse a pasta my-app e inicialize o app usando um dos comando a seguir:
+    npm init react-app my-app
+
+
+<h3>Yarn</h3>
+
+    
+    yarn create react-app my-app
+
+
+Com o início do run, o processo de instalação de alguns recursos básicos será iniciado, resultando nos arquivos que irão compor o porojeto e que, posteriormente, serão abordados de forma detalhada. 
+
+O comando irá criar um diretório chamado my-app dentro da pasta atual. No diretório, será gerada a estrutura inicial da aplicação e algumas dependências, as quais serão mais bem abordados adiante:
+
+
+    my-app
+    ├── README.md
+    ├── node_modules
+    ├── package.json
+    ├── .gitignore
+    ├── public
+    │   ├── favicon.ico
+    │   ├── index.html
+    │   └── manifest.json
+    └── src
+        ├── App.css
+        ├── App.js
+        ├── App.test.js
+        ├── index.css
+        ├── index.js
+        ├── logo.svg
+        └── serviceWorker.js
+        └── setupTests.js
+
+
+Sem qualquer configuração ou estrutura de compilação, o diretório apenas conta com o necessário para inicializar um React app. Uma vez que a instalação foi concluída, é possível fazer o run do projeto com um dos comandos a seguir:
 
 
     yarn start
@@ -82,7 +108,7 @@ Estas nada mais são que alguns comandos básicos para iniciar o processo de con
     npm start 
 
 
-Como resultado, temos uma aplicação React rodando localmente:
+Como resultado, temos uma aplicação React rodando localmente em modo de desenvolvimento:
 
 
     Compiled successfully!
@@ -99,3 +125,11 @@ Como resultado, temos uma aplicação React rodando localmente:
 <div align="center">
   <img src="https://user-images.githubusercontent.com/61476935/145259691-53cd2714-5c28-4c35-a913-9df01103c4b3.gif">
 </div>
+
+
+
+
+
+
+
+
