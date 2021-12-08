@@ -46,7 +46,7 @@ Para verificar as versões do Node e do npm isntaladas, use respectivamente:
 Certifique-se de ter instalado uma versão do Node acima da 14.0.0 e da 6+ do nmp, já que versões antigas podem não conter recursos que serão utilizados nos exemplos adiante.
 
 
-<h2>Criando React App</h2>
+<h1>Criando um React App</h1>
 
 
 Após a instalação do Node, já é possível criar uma aplicação React totalmente do zero. Para isso, acesse o diretório onde o projeto será criado, através do terminal, e execute um dos comando a seguir:
@@ -72,8 +72,6 @@ O [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7
     
     yarn create react-app my-app
 
-
-Com o início do run, o processo de instalação de alguns recursos básicos será iniciado, resultando nos arquivos que irão compor o porojeto e que, posteriormente, serão abordados de forma detalhada. 
 
 O comando irá criar um diretório chamado my-app dentro da pasta atual. No diretório, será gerada a estrutura inicial da aplicação e algumas dependências, as quais serão mais bem abordados adiante:
 
@@ -127,9 +125,9 @@ Como resultado, temos uma aplicação React rodando localmente em modo de desenv
 </div>
 
 
+Para entender na prática como a reatividade ocorre 
 
 
+<img src="https://user-images.githubusercontent.com/61476935/145268939-74ec1fd9-1e18-43c2-a98c-58cb366e57a5.gif" style="float:right">
 
-
-
-
+dsfsdfsdfffffffffffffffffffffffffffffff
