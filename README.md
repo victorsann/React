@@ -124,10 +124,3 @@ Como resultado, temos uma aplicação React rodando localmente em modo de desenv
   <img src="https://user-images.githubusercontent.com/61476935/145259691-53cd2714-5c28-4c35-a913-9df01103c4b3.gif">
 </div>
 
-
-Para entender na prática como a reatividade ocorre 
-
-
-<img src="https://user-images.githubusercontent.com/61476935/145268939-74ec1fd9-1e18-43c2-a98c-58cb366e57a5.gif" style="float:right">
-
-dsfsdfsdfffffffffffffffffffffffffffffff
