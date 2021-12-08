@@ -81,5 +81,5 @@ Estas nada mais são que alguns comandos básicos para iniciar o processo de con
 
 Como resultado, temos uma aplicação React rodando localmente:
 
-<img width="50%" src="https://user-images.githubusercontent.com/61476935/145241429-2dd430d2-a21f-49e7-81ea-df01236be644.png">
+<img width="70%" src="https://user-images.githubusercontent.com/61476935/145241429-2dd430d2-a21f-49e7-81ea-df01236be644.png">
 
