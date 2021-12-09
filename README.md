@@ -158,22 +158,22 @@ Ela não se define por uma atribuíção de string à uma constante, e tão pouc
 Em ferramentas como o Angular, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como componente, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
 
 
-    JSX ON                                               JSX OFF
+    JSX ON                                                   JSX OFF
 
-    class HelloMessage extends React.Component {         class HelloMessage extends React.Component {
-      render() {                                           render() {
-        return (                                             return React.createElement(
-          <div>                                                "div",
-            Olá, {this.props.name}!                            null,
-          </div>                                               "Ol\xE1, ",
-        );                                                     this.props.name,
-      }                                                        "!"
-     }                                                       );
-                                                           }
-    ReactDOM.render(                                     }
-      <HelloMessage name="Taylor" />,                   ReactDOM.render(React.createElement(HelloMessage, 
-      document.getElementById('hello-example')          { name: "Victor" }), document.getElementById('hello-example'));
+    class HelloMessage extends React.Component {             class HelloMessage extends React.Component {
+      render() {                                               render() {
+        return (                                                 return React.createElement(
+          <div>                                                    "div",
+            Olá, {this.props.name}!                                null,
+          </div>                                                   "Ol\xE1, ",
+        );                                                         this.props.name,
+      }                                                            "!"
+     }                                                           );
+                                                               }
+    ReactDOM.render(                                         }
+      <HelloMessage name="Taylor" />,                       ReactDOM.render(React.createElement(HelloMessage, 
+      document.getElementById('hello-example')              { name: "Victor" }), document.getElementById('hello-example'));
     );
 
 
-Ambos possuem a mesma funcionalidade e printam o mesmo resultado, mas usam os recursos do React de forma distinta.
+Ambos possuem a mesma funcionalidade e printam o mesmo resultado, mas usam os recursos do React de forma distinta. E apesar de não ser uma obrigatoriedade, faremos uso constante do JSX nos próximos passos, já que é uma recomendação bastante válida e característica da lib.
