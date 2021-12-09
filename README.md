@@ -383,7 +383,7 @@ Perceba que ele nada mais é que uma função retornando um JSX element, que é 
 <h2>Renderizando Components</h2>
 
 
-Ainda como o App Component em mente, perceba que um elemento que o representa compõe os parâmetro declarados na render function do React Dom na index.js file:
+Ainda coms o App Component em mente, perceba que um elemento que o representa compõe os parâmetro declarados na render function do React Dom na index.js file:
 
 
     import App from './App';
@@ -396,24 +396,136 @@ Ainda como o App Component em mente, perceba que um elemento que o representa co
     );
 
 
-Esta representação demonstra uma das características do JSX, que é a criação de tags customizadas, cuja função é instanciar um component dentro da árvore de objetos DOM, fazendo com ele possa ser reaproveitado em diversos pontos da aplicação. Normalmente se associa ao html elementos DOM que representem tags HTML, como:
+Esta representação demonstra uma das características do JSX, que é a criação de tags customizadas, cuja função é instanciar um component dentro da árvore de objetos DOM, fazendo com ele possa ser renderizado ou reaproveitado em diversos pontos da aplicação. Normalmente se associa ao HTML elementos DOM que representem tags HTML, como:
 
     
     const element = <div />
 
 
-Contudo, elementos também podem representar os chamado user-defined components, como por exemplo:
+Contudo, elementos também podem representar os chamados user-defined components, como por exemplo:
 
     
     function Welcome(props) {
       return <h1>Hello, {props.name}</h1>;
     }
     
-    const element = <Welcome name="Victor" />;
+    const element = <Welcome name="Victor" />; // user-defined component
     
     ReactDOM.render(
       element,
       document.getElementById('root')
     );
 
+
+<h2>Componentes de Composição</h2>
+
+
+Os componentes podem se referir a outros componentes em sua saída. Isso nos permite usar a mesma abstração de componente para qualquer nível de detalhe. Um botão, um formulário, um diálogo, uma tela: nos React App's, todos são comumente expressos como componentes.
+
+Por exemplo, podemos modificar o App component para que ele renderize o Welcome component multiplas vezes:
+
+
+    function Welcome(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+    
+    function App() {
+      return (
+        <div>
+          <Welcome name="Sara" />
+          <Welcome name="Cahal" />
+          <Welcome name="Edite" />
+        </div>
+      );
+    }
+    
+    ReactDOM.render(
+      <App />,
+      document.getElementById('root')
+    );
+
+
+<h2>Extraindo Components</h2>
+
+
+É bastante comum que em uma coposição de tela vários components surjam. Caso uma tela demande uma grande quantidade de elementos, é recomendado que se extraia esses elementos e que se crie novos components a partir destes. Por exemplo, imagine o seguinte serário:
+
+Em uma aplicação, considere o componente comentário, com determinadas informações sobre o usuário que o fez:
+
+<div align="center">
+ <img src ="https://user-images.githubusercontent.com/61476935/145455941-3e75eb02-0e37-46f2-943c-cb6ec5ec6d12.png">
+</div>
+
+Informações como o avatar, nome e o texto irão se repetir para cada comentário feito. Etão digamos que como ersultado do modelo, foi criado o seguinte component:
+
+
+    function Comment(props) {
+      return (
+        <div className="Comment">
+          <div className="UserInfo">
+            <img className="Avatar"
+              src={props.author.avatarUrl}
+              alt={props.author.name}
+            />
+            <div className="UserInfo-name">
+              {props.author.name}
+            </div>
+          </div>
+          <div className="Comment-text">
+            {props.text}
+          </div>
+          <div className="Comment-date">
+            {formatDate(props.date)}
+          </div>
+        </div>
+      );
+    }
+
+
+O exemplo não implica em mostrar problemas de má funcionalidade, mas sim de pouca eficiência em termos de reúso das pequenas partes que fazem parte do component. Portanto, criaremos novos components a partir do commet, facilitando o processo de reaproveitamento e de manutenção do código. Começando com o Avatar:
+
+
+    function Avatar(props) {
+      return (
+        <img className="Avatar"
+          src={props.user.avatarUrl}
+          alt={props.user.name}
+        />
+      );
+    }
+
+
+Estando isolado dos demais, o Avatar não precisa saber que está sendo utilizado em um comentário, perfil e etc. O React recomenda nomear components com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado. 
+
+Agora, dentro da estrutura do Comment, temos uma quebra de informações. Já seria possíel utilizar o Avatar component, porém, o mesmo faz parte das informações do usuário, e por definição o UserInfo deve conter o Avatar:
+
+
+    function UserInfo(props) {
+      return (
+        <div className="UserInfo">
+          <Avatar user={props.user} />
+          <div className="UserInfo-name">
+            {props.user.name}
+          </div>
+        </div>
+      );
+    }
+
+
+Essa quebrar permite simplificar ainda mais o Comment component, que passou a ser estruturado da seguinte forma:
+
+
+    function Comment(props) {
+      return (
+        <div className="Comment">
+          <UserInfo user={props.author} />
+          <div className="Comment-text">
+            {props.text}
+          </div>
+          <div className="Comment-date">
+            {formatDate(props.date)}
+          </div>
+        </div>
+      );
+    }
 
