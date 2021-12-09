@@ -320,4 +320,6 @@ Nele, a função tick, que contém a execução do método ReactDom.render(), é
 
 O React DOM compara cada elemento que compõe a interface com a versão anterior, atualizando apenas o necessário para gerar uma verão mais atual do DOM. É possível observar esta afirmação verificando a atualização contante do exemplo anterir no browser:
 
-<img src="https://user-images.githubusercontent.com/61476935/145408670-7279ec9e-c538-4cf9-9188-eb1eec6df097.gif">
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/61476935/145409269-952df923-f079-4f03-b2db-ebb0edc8b8b2.gif">
+</div>
