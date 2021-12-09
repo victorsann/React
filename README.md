@@ -125,7 +125,7 @@ Como resultado, temos uma aplicação React rodando localmente em modo de desenv
 </div>
 
 
-<h2>Hello World</h2>
+<h1>Hello World</h1>
 
 
 Para termos o popular Hello World em tela, faremos uma pequena modificação no projeto criado. No arquivo index.js, que nada mais é que o principal aquivo .js da aplicação, faremos a seguinda mudança:
@@ -139,4 +139,38 @@ Para termos o popular Hello World em tela, faremos uma pequena modificação no 
     );                                       
 
 
-Após salvarmos as modificações, teremos um header "Hello, world!" em tela. Com este exemplo tivemos contato com recursos bastante importantes e caracteristicos do React, como o ReactDOM e o JSX, sobre os quais falaremos a seguir.
+Após salvarmos as modificações, teremos um header "Hello, world!" em tela. Com este exemplo tivemos contato com recursos bastante importantes e caracteristicos do React, como o JSX, o ReactDOM, e a componentização, sobre os quais falaremos a seguir.
+
+
+<h1>O que é JSX ?</h1>
+
+
+É comum definirmos o HTML e o CSS como um padrão do desenvolvimento Web, o que não está incorreto, já ambos possuem uma associação direta, onde é possível escrever código Javascripto em uma file HTML utilizando a já citada tag script. Porém, é bastante comum separá-los. O JSX é uma subversão dessa prática, sendo uma extensão da sintaxa do Javascript, que se assemelha a uma linguagem de marcação, mas que mantém todos o rescursos do Javascript.
+
+Considere a seguinte declaração:
+
+
+    const element = <h1>Hello, world!</h1>;
+
+
+Ela não se define por uma atribuíção de string à uma constante, e tão pouco como uma constante que recebe um tag HTML, é a sintaxe básica do JSX, que não desassocia ambas as definições.
+
+Em ferramentas como o Angular, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como componente, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
+
+
+    class HelloMessage extends React.Component {             class HelloMessage extends React.Component {
+      render() {                                               render() {
+        return (                                                 return React.createElement(
+          <div>                                                    "div",
+            Olá, {this.props.name}!                                null,
+          </div>                                                   "Ol\xE1, ",
+        );                                                         this.props.name,
+      }                                                            "!"
+     }                                                           );
+                                                               }
+    ReactDOM.render(                                         }
+      <HelloMessage name="Taylor" />,                       ReactDOM.render(React.createElement(HelloMessage, 
+      document.getElementById('hello-example')              { name: "Taylor" }), document.getElementById('hello-example'));
+    );
+
+
