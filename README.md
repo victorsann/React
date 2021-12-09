@@ -176,7 +176,7 @@ Em ferramentas como o Angular, o desacoplamento de lógica e UI é simplesmente 
     );
 
 
-Ambos possuem a mesma funcionalidade e printam o mesmo resultado, mas usam os recursos do React de forma distinta. Mas, apesar de não ser uma obrigatoriedade, faremos uso constante do JSX nos próximos passos, já que é uma recomendação bastante válida e característica da lib.
+Ambos possuem a mesma funcionalidade e printam o mesmo resultado, mas usam os recursos do React de forma distinta, como a simples declaração de um elemento(JSX ON) e a necessidade de definir sua criação antes de declará-lo(JSX OFF). Mas, apesar de não ser uma obrigatoriedade, faremos uso constante do JSX nos próximos passos, já que é uma recomendação bastante válida e característica da lib.
 
 
 <h2>Babel</h2>
@@ -207,3 +207,117 @@ O processo de transpilação do Babel é dividido em três principais passos:
 - PARSER: Converte o código em AST(Abstract Syntax Tree), mapeando todos os elementos presentes.
 - TRANSFORMER: Manipula o AST gerado com base em um registro de possíbilidades de conversão.
 - Generator: Tranforma AST resultante do TRANSFORMER em um código Javascript otimizado para uso.ss
+
+
+<h2>Sintaxe</h2>
+
+
+Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente. Uma dessas diferenças é a aceitação de expressões Javascript como parte do conteúdo da tag, podendo ser incorporada entre chaves({ }). Com isso é pissível:
+
+
+<h3>Expressões Dinâmicas</h3>
+
+
+    const name = "Victor";
+    const welcoming = <h1>Welcome, {name}!</h1>;
+
+    ReactDOM.render(
+      welcoming,
+      document.getElementById('root')
+    );
+
+
+<h3>Executar Operações</h3>
+
+
+    const a = 10;
+    const b = 11;
+    const element = <h1>resultado: {(a + b) / 2}</h1>;
+    
+    ReactDOM.render(
+      element,
+      document.getElementById('root')
+    );
+
+
+<h3>Executar Funções</h3>
+
+
+    const name = "Victor";
+    
+    function getUserName(name) {
+      return name;
+    }
+    
+    const userName = <h1>{getUserName(name)}</h1>
+    
+    ReactDOM.render(
+      userName,
+      document.getElementById('root')
+    );
+
+
+<h3>Expressões Condicionais</h3>
+
+
+    function getGreeting(user) {
+      if (user) {
+        return <h1>Hello, {user}!</h1>;
+      }
+      return <h1>Hello, Stranger.</h1>;
+    }
+    
+    ReactDOM.render(
+      getGreeting("Victor"),
+      document.getElementById('root')
+    );
+
+
+<h1>Renderização de Elementos</h1>
+
+
+Elemento é a designação dada as partes que compõem a user interface, sendo basicamente uma descrição do que é visto em tela:
+
+    
+    const element = <h1>Hello, world</h1>;
+
+
+Diferente de elementos DOM do navegador, elementos React são objetos simples que utilizam menos recursos. O React DOM é o responsável por atualizar o Document Object Model para exibir os elementos React. Além disso, aplicações React, normalmente, contam com um elemento chamado de root node, permitindo que o React DOM gerencie toda a aplicação a partir de um único ponto. E para rederizar um elemento React, passamos ambos elemento e root como parâmetros da função ReactDOM.render():
+
+    
+    const element = <h1>Hello, world</h1>;
+
+    ReactDOM.render(
+      element, 
+      document.getElementById('root')
+    );
+
+
+<h2>Atualizando Elementos Renderizados</h2>
+
+
+Elementos React são imutáveis. Uma vez que um elemento foi criado, não é possível mudar seu elementos children ou atributos. Podendo ser compadaro com um frame, quando um elemento é rederizado, ele representa a user interface em determinado ponto no tempo de execução. Até onde é possível imagianr, o único geito de atualizar a user interface é através da criação de um novo elemento. Considere o exemplo a seguir:
+
+
+    function tick() {
+      const element = (
+        <div>
+          <h1>Hello, world!</h1>
+          <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        </div>
+      );
+      ReactDOM.render(element, document.getElementById('root'));
+    }
+    
+    setInterval(tick, 1000);
+
+
+Nele, a função tick, que contém a execução do método ReactDom.render(), é chamada a cada segundo, resultando em uma constante atualização da UI.
+
+
+<h2>Só o Necessário é Atualizado</h2>
+
+
+O React DOM compara cada elemento que compõe a interface com a versão anterior, atualizando apenas o necessário para gerar uma verão mais atual do DOM. É possível observar esta afirmação verificando a atualização contante do exemplo anterir no browser:
+
+<img src="https://user-images.githubusercontent.com/61476935/145408670-7279ec9e-c538-4cf9-9188-eb1eec6df097.gif">
