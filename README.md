@@ -323,3 +323,97 @@ O React DOM compara cada elemento que compõe a interface com a versão anterior
 <div align="center">
   <img src="https://user-images.githubusercontent.com/61476935/145409269-952df923-f079-4f03-b2db-ebb0edc8b8b2.gif">
 </div>
+
+Mesmo que a cada segundo todo o elemento que descreve a interface seja recriado, apenas o texto que contém modificações é atualizado pelo React Dom.
+
+
+<h1>Componentes</h1>
+
+
+Sendo um dos aspectos mais importantes da composição do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isoladas das demais. Conceitualmente, components são semelhantes a funções, que aceitam inputs arbitrários(chamados de "props") e retornam elemento React cuja função é descrever como determinada tela ou parte desta deverá se comportar.
+
+A forma mais simples de definir um component é declarando uma função Javascript:
+
+
+    function Welcome(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+
+
+Porém, a forma mais comum de declarar um component é utilizando o modelo de classes do [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), que contam com algumas features adicionais que veremos posteriormente:
+
+
+    class Welcome extends React.Component {
+      render() {
+        return <h1>Hello, {this.props.name}</h1>;
+      }
+    }
+
+
+Do ponto de vista do React, ambas classes e funções equivalem a um component. É possível observar esta ideia no App component gerado pelo projeto anterioemente criado:
+
+
+    function App() {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+              Edit <code>src/App.js</code> and save to reload.
+            </p>
+            <a
+              className="App-link"
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn React
+            </a>
+          </header>
+        </div>
+      );
+    }
+    
+    export default App;
+
+
+Perceba que ele nada mais é que uma função retornando um JSX element, que é exportada e utilizada como base para a aplicação.
+
+
+<h2>Renderizando Components</h2>
+
+
+Ainda como o App Component em mente, perceba que um elemento que o representa compõe os parâmetro declarados na render function do React Dom na index.js file:
+
+
+    import App from './App';
+    
+    ...
+
+    ReactDOM.render(
+      <App />,
+      document.getElementById('root')
+    );
+
+
+Esta representação demonstra uma das características do JSX, que é a criação de tags customizadas, cuja função é instanciar um component dentro da árvore de objetos DOM, fazendo com ele possa ser reaproveitado em diversos pontos da aplicação. Normalmente se associa ao html elementos DOM que representem tags HTML, como:
+
+    
+    const element = <div />
+
+
+Contudo, elementos também podem representar os chamado user-defined components, como por exemplo:
+
+    
+    function Welcome(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+    
+    const element = <Welcome name="Victor" />;
+    
+    ReactDOM.render(
+      element,
+      document.getElementById('root')
+    );
+
+
