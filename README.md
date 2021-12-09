@@ -145,7 +145,7 @@ Após salvarmos as modificações, teremos um header "Hello, world!" em tela. Co
 <h1>O que é JSX ?</h1>
 
 
-É comum definirmos o HTML e o CSS como um padrão do desenvolvimento Web, o que não está incorreto, já ambos possuem uma associação direta, onde é possível escrever código Javascripto em uma file HTML utilizando a já citada tag script. Porém, é bastante comum separá-los. O JSX é uma subversão dessa prática, sendo uma extensão da sintaxa do Javascript, que se assemelha a uma linguagem de marcação, mas que mantém todos o rescursos do Javascript.
+É comum definirmos o HTML e o CSS como um padrão do desenvolvimento Web, o que não está incorreto, já que ambos possuem uma associação direta, onde é possível escrever código Javascript em uma file HTML utilizando a já citada tag script. Porém, é bastante comum separá-los como recursos totalmente distintos. O JSX, ou Javascript Xml, é uma subversão dessa prática, sendo uma extensão da sintaxa do Javascript, que se assemelha a uma linguagem de marcação, mas que mantém todos o rescursos.
 
 Considere a seguinte declaração:
 
@@ -176,4 +176,34 @@ Em ferramentas como o Angular, o desacoplamento de lógica e UI é simplesmente 
     );
 
 
-Ambos possuem a mesma funcionalidade e printam o mesmo resultado, mas usam os recursos do React de forma distinta. E apesar de não ser uma obrigatoriedade, faremos uso constante do JSX nos próximos passos, já que é uma recomendação bastante válida e característica da lib.
+Ambos possuem a mesma funcionalidade e printam o mesmo resultado, mas usam os recursos do React de forma distinta. Mas, apesar de não ser uma obrigatoriedade, faremos uso constante do JSX nos próximos passos, já que é uma recomendação bastante válida e característica da lib.
+
+
+<h2>Babel</h2>
+
+
+Diferente do Javascript e do HTML, que são diretamente interpretados pelo navegador, o JSX necessita de um transpilador para gerar, a partir dos elementos que compõem o template, o código equivalente em Javascript e HTML comuns, tornando o React interpretável até mesmo por versões mais antigas do Internet Explorer. 
+
+O React conta com várias ferramentas para suprir esta nessecidade, porém, a mais utilizada é o Babel. O Babel é famoso por compilar, ou transpilar, código ECMAScript 6 e versões mais modernas, que contam com novas funcionalidades não interpretáveis por todos os navegadores, em um código Javascript que possa ser interpretado por versões mais antigas e menos utilizadas, o que abrange a sintaxe do JSX. Esse processo pode ser visto no exemplo a seguir:
+
+
+    (x, y) => {return x + y}
+
+
+O babel converteria a arrow function do exemplo acima para versões mais antiga do Javascript da seguinte forma:
+
+
+     // es2016                // es2015
+
+     "use strict";            "use strict";
+      
+     (x, y) => {              (function (x, y) => {
+       return x + y;            return x + y;
+     }                        });
+
+
+O processo de transpilação do Babel é dividido em três principais passos:
+
+- PARSER: Converte o código em AST(Abstract Syntax Tree), mapeando todos os elementos presentes.
+- TRANSFORMER: Manipula o AST gerado com base em um registro de possíbilidades de conversão.
+- Generator: Tranforma AST resultante do TRANSFORMER em um código Javascript otimizado para uso.ss
