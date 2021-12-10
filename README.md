@@ -147,7 +147,7 @@ Após salvarmos as modificações, teremos um header "Hello, world!" em tela. Co
 <h1>O que é JSX ?</h1>
 
 
-A maior parte das aplocações e modelos de desenvolvimento separa lógica e UI, o JSX, ou Javascript Xml, é uma subversão dessa prática, sendo uma extensão da sintaxa do Javascript que se assemelha a uma linguagem de marcação, mas que mantém todos o rescursos de uma linguagem de programação
+A maior parte das aplicações e modelos de desenvolvimento separa lógica e UI, o JSX, ou Javascript Xml, é uma subversão dessa prática, sendo uma extensão da sintaxa do Javascript que se assemelha a uma linguagem de marcação, mas que mantém todos o rescursos de uma linguagem de programação.
 
 Considere a seguinte declaração:
 
@@ -157,7 +157,7 @@ Considere a seguinte declaração:
 
 Ela não se define por uma atribuíção de string à uma constante, e tão pouco como uma constante que recebe um tag HTML, é a sintaxe básica do JSX, que não desassocia ambas as definições.
 
-Em ferramentas como o Angular, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como componente, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
+Em ferramentas como o Angular, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como component, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
 
 
     JSX ON                                                   JSX OFF
@@ -166,19 +166,16 @@ Em ferramentas como o Angular, o desacoplamento de lógica e UI é simplesmente 
       render() {                                               render() {
         return (                                                 return React.createElement(
           <div>                                                    "div",
-            Olá, {this.props.name}!                                null,
-          </div>                                                   "Ol\xE1, ",
-        );                                                         this.props.name,
-      }                                                            "!"
-     }                                                           );
-                                                               }
-    ReactDOM.render(                                         }
-      <HelloMessage name="Taylor" />,                       ReactDOM.render(React.createElement(HelloMessage, 
-      document.getElementById('hello-example')              { name: "Victor" }), document.getElementById('hello-example'));
+            Hello, world!                                          "Hello, world!"
+          </div>                                                 );
+      }                                                        }
+    ReactDOM.render(                                         } 
+      <HelloMessage />,                                     ReactDOM.render(React.createElement(HelloMessage),
+      document.getElementById('hello-example')              document.getElementById('hello-example'));
     );
 
 
-Ambos possuem a mesma funcionalidade e printam o mesmo resultado, mas usam os recursos do React de forma distinta, como a simples declaração de um elemento(JSX ON) e a necessidade de definir sua criação antes de declará-lo(JSX OFF). Mas, apesar de não ser uma obrigatoriedade, faremos uso constante do JSX nos próximos passos, já que é uma recomendação bastante válida e característica da lib.
+Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do component quando o JSX é utilizado, já que sua declaração é o suficiente para criá-lo. O segundo exemplo é como o Babel interpretária o primeiro, posteriormente o convertendo em HTML padrão, processo que será abordado a seguir.
 
 
 <h2>Babel</h2>
@@ -192,7 +189,7 @@ O React conta com várias ferramentas para suprir esta nessecidade, porém, a ma
     (x, y) => {return x + y}
 
 
-O babel converteria a arrow function do exemplo acima para versões mais antiga do Javascript da seguinte forma:
+O babel converteria a arrow function do exemplo acima para versões mais antigas do Javascript da seguinte forma:
 
 
      // es2016                // es2015
@@ -208,13 +205,13 @@ O processo de transpilação do Babel é dividido em três principais passos:
 
 - PARSER: Converte o código em AST(Abstract Syntax Tree), mapeando todos os elementos presentes.
 - TRANSFORMER: Manipula o AST gerado com base em um registro de possíbilidades de conversão.
-- Generator: Tranforma AST resultante do TRANSFORMER em um código Javascript otimizado para uso.ss
+- Generator: Transforma o AST resultante do TRANSFORMER em um código Javascript otimizado para uso.
 
 
 <h2>Sintaxe</h2>
 
 
-Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente. Uma dessas diferenças é a aceitação de expressões Javascript como parte do conteúdo da tag, podendo ser incorporada entre chaves({ }). Com isso é pissível:
+Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente, permitindo com que basicamente qualquer expressão Javascript possa ser utilizada em conjunto com um elemento HTML. Com isso é pissível utilizar:
 
 
 <h3>Expressões Dinâmicas</h3>
@@ -229,7 +226,10 @@ Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente. Uma de
     );
 
 
-<h3>Executar Operações</h3>
+O que normalmente seria atrelado a um template string, é utilizado de forma conjunta com a tag, permitindo acessar valores através da sua instanciação dentro de chaves {}.
+
+
+<h3>Operações Aritméticas</h3>
 
 
     const a = 10;
@@ -242,7 +242,10 @@ Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente. Uma de
     );
 
 
-<h3>Executar Funções</h3>
+Senguindo a regra de uso das chaves, operações envolvendo expressões Javascript também podem ser utilizadas.
+
+
+<h3>Funções</h3>
 
 
     const name = "Victor";
@@ -257,6 +260,9 @@ Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente. Uma de
       userName,
       document.getElementById('root')
     );
+
+
+Da mesma forma, no JSX, instâncias de funções também podem ser definidas como children de elementos HTML.
 
 
 <h3>Expressões Condicionais</h3>
@@ -275,7 +281,15 @@ Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente. Uma de
     );
 
 
-<h1>Renderização de Elementos</h1>
+Elementos HTML também podem ser retornados como valores em expressões condicionais
+
+
+<h3>Estrutura de Repetição</h3>
+
+
+
+
+<h1>React DOM e a Renderização de Elementos</h1>
 
 
 Elemento é a designação dada as partes que compõem a user interface, sendo basicamente uma descrição do que é visto em tela:
@@ -284,7 +298,7 @@ Elemento é a designação dada as partes que compõem a user interface, sendo b
     const element = <h1>Hello, world</h1>;
 
 
-Diferente de elementos DOM do navegador, elementos React são objetos simples que utilizam menos recursos. O React DOM é o responsável por atualizar o Document Object Model para exibir os elementos React. Além disso, aplicações React, normalmente, contam com um elemento chamado de root node, permitindo que o React DOM gerencie toda a aplicação a partir de um único ponto. E para rederizar um elemento React, passamos ambos elemento e root como parâmetros da função ReactDOM.render():
+Diferente de elementos DOM do navegador, elementos React são objetos simples que utilizam menos recursos. O React DOM é o responsável por renderizar e atualizar esses elementos. Além disso, aplicações React, normalmente, contam com um elemento chamado de root node, permitindo que o React DOM gerencie toda a aplicação a partir de um único ponto. E para rederizar um elemento React, passamos ambos elemento e root como parâmetros da função ReactDOM.render():
 
     
     const element = <h1>Hello, world</h1>;
@@ -295,10 +309,18 @@ Diferente de elementos DOM do navegador, elementos React são objetos simples qu
     );
 
 
-<h2>Atualizando Elementos Renderizados</h2>
+<h2>Virtual DOM</h2>
 
 
-Elementos React são imutáveis. Uma vez que um elemento foi criado, não é possível mudar seu elementos children ou atributos. Podendo ser compadaro com um frame, quando um elemento é rederizado, ele representa a user interface em determinado ponto no tempo de execução. Até onde é possível imagianr, o único geito de atualizar a user interface é através da criação de um novo elemento. Considere o exemplo a seguir:
+Um detalhe importante sobre o React DOM é a sua capacidade de renderização. Como atualizar todo o template se torna muito custoso para a aplicação, o React DOM mantém uma cópia virtual dos elementos que compõem a estrutura da aplicação, chamada de Virtual DOM. Quando uma mudança de estado ocorre, o Virtual DOM detecta, através da sua cópia virtual, qual elemento foi atualizado, renderizando apenas o elemento que sofreu alteração:
+
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/61476935/145583677-409f5cad-7984-427a-bf92-116ba7817479.png">
+</div>
+
+
+Considere o exemplo a seguir:
 
 
     function tick() {
@@ -314,13 +336,7 @@ Elementos React são imutáveis. Uma vez que um elemento foi criado, não é pos
     setInterval(tick, 1000);
 
 
-Nele, a função tick, que contém a execução do método ReactDom.render(), é chamada a cada segundo, resultando em uma constante atualização da UI.
-
-
-<h2>Só o Necessário é Atualizado</h2>
-
-
-O React DOM compara cada elemento que compõe a interface com a versão anterior, atualizando apenas o necessário para gerar uma verão mais atual do DOM. É possível observar esta afirmação verificando a atualização contante do exemplo anterir no browser:
+Nele, a função tick, que contém a execução do método ReactDom.render(), é chamada a cada segundo, resultando em uma constante atualização da UI:
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/61476935/145409269-952df923-f079-4f03-b2db-ebb0edc8b8b2.gif">
