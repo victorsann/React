@@ -348,7 +348,7 @@ Mesmo que a cada segundo todo o elemento que descreve a interface seja recriado,
 <h1>Components</h1>
 
 
-Sendo um dos aspectos mais importantes da composição do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isoladas das demais. Conceitualmente, components são semelhantes a funções, que aceitam inputs arbitrários(chamados de "props") e retornam elemento React cuja função é descrever como determinada tela ou parte desta deverá se comportar.
+Sendo um dos aspectos mais importantes da composição do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isoladas das demais. Conceitualmente, components são semelhantes a funções, que aceitam inputs arbitrários(chamados de "props") e retornam elemento React cuja função é descrever como determinada tela, ou parte desta, deverá se comportar.
 
 A forma mais simples de definir um component é declarando uma função Javascript:
 
@@ -401,7 +401,7 @@ Perceba que ele nada mais é que uma função retornando um JSX element, que é 
 <h2>Renderizando Components</h2>
 
 
-Ainda coms o App Component em mente, perceba que um elemento que o representa compõe os parâmetro declarados na render function do React Dom na index.js file:
+Ainda com o App Component em mente, perceba que um elemento que o representa compõe os parâmetro declarados na render function do React Dom na index.js file:
 
 
     import App from './App';
@@ -438,7 +438,7 @@ Contudo, elementos também podem representar os chamados user-defined components
 <h2>Components de Composição</h2>
 
 
-Os components podem se referir a outros components em sua saída. Isso nos permite usar a mesma abstração de componente para qualquer nível de detalhe. Um botão, um formulário, um diálogo, uma tela: nos React App's, todos são comumente expressos como components.
+Os components podem se referir a outros components em sua saída. Isso nos permite usar a mesma abstração de componente para qualquer nível de detalhe. Um botão, um formulário, um dialog, uma tela: nos React App's, todos são comumente expressos como components.
 
 Por exemplo, podemos modificar o App component para que ele renderize o Welcome component multiplas vezes:
 
@@ -474,7 +474,7 @@ Em uma aplicação, considere o componente comentário, com determinadas informa
  <img src ="https://user-images.githubusercontent.com/61476935/145455941-3e75eb02-0e37-46f2-943c-cb6ec5ec6d12.png">
 </div>
 
-Informações como o avatar, nome e o texto irão se repetir para cada comentário feito. Etão digamos que como ersultado do modelo, foi criado o seguinte component:
+Informações como o avatar, nome e o texto irão se repetir para cada comentário feito. Então digamos que como resultado do modelo, foi criado o seguinte component:
 
 
     function Comment(props) {
@@ -500,7 +500,7 @@ Informações como o avatar, nome e o texto irão se repetir para cada comentár
     }
 
 
-O exemplo não implica em mostrar problemas de má funcionalidade, mas sim de pouca eficiência em termos de reúso das pequenas partes que fazem parte do component. Portanto, criaremos novos components a partir do commet, facilitando o processo de reaproveitamento e de manutenção do código. Começando com o Avatar:
+O exemplo não implica em mostrar problemas de má funcionalidade, mas sim de pouca eficiência em termos de reúso das pequenas partes que fazem parte do component. Portanto, criaremos novos components a partir do Comment, facilitando o processo de reaproveitamento e de manutenção do código. Começando com o Avatar:
 
 
     function Avatar(props) {
