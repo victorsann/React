@@ -18,7 +18,7 @@ Com uma estrutura declarativa e reativa baseada em components, o React possui fl
 
 - Declarativo: O React ópta por manter um processo de desenvolvimento declarativo graças a facilidade de depuração e maior previsibilidade com relação ao código que o paradigma oferece.
 - Reativo: Dando nome a biblioteca, a reatividade permite manter um fluxo de informações e de mudança de estado bastante fluido.
-- Baseado em Componentes: A componentização permite gerar funcionalidades que independem umas das outras mas que mantêm constante comunicação.
+- Baseado em Components: A componentização permite gerar funcionalidades que independem umas das outras mas que mantêm constante comunicação.
 
 
 <h2>Ambiente de Desenvolvimento</h2>
@@ -77,23 +77,25 @@ O comando irá criar um diretório chamado my-app dentro da pasta atual. No dire
 
 
     my-app
+    |
     ├── README.md
-    ├── node_modules
-    ├── package.json
+    ├── node_modules ----------------- Node package lib
+    ├── package.json ----------------- Registro de instalações
     ├── .gitignore
-    ├── public
-    │   ├── favicon.ico
-    │   ├── index.html
-    │   └── manifest.json
-    └── src
-        ├── App.css
-        ├── App.js
-        ├── App.test.js
-        ├── index.css
-        ├── index.js
-        ├── logo.svg
-        └── serviceWorker.js
-        └── setupTests.js
+    |
+    ├── public ----------------------- Public resources
+    │   ├── favicon.ico -------------- App icon 
+    │   ├── index.html --------------- Main HTML file
+    │   └── manifest.json ------------ Basic app info            
+    |
+    └── src -------------------------- Components directory
+        ├── App.css ------------------ App component style sheet
+        ├── App.js ------------------- App component javascript file
+        ├── App.test.js -------------- App component test file
+        ├── index.css ---------------- Main CSS file
+        ├── index.js ----------------- Main JS file
+        ├── logo.svg ----------------- App icon
+        └── setupTests.js ------------ Jest file
 
 
 Sem qualquer configuração ou estrutura de compilação, o diretório apenas conta com o necessário para inicializar um React app. Uma vez que a instalação foi concluída, é possível fazer o run do projeto com um dos comandos a seguir:
@@ -327,7 +329,7 @@ O React DOM compara cada elemento que compõe a interface com a versão anterior
 Mesmo que a cada segundo todo o elemento que descreve a interface seja recriado, apenas o texto que contém modificações é atualizado pelo React Dom.
 
 
-<h1>Componentes</h1>
+<h1>Components</h1>
 
 
 Sendo um dos aspectos mais importantes da composição do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isoladas das demais. Conceitualmente, components são semelhantes a funções, que aceitam inputs arbitrários(chamados de "props") e retornam elemento React cuja função é descrever como determinada tela ou parte desta deverá se comportar.
@@ -417,10 +419,10 @@ Contudo, elementos também podem representar os chamados user-defined components
     );
 
 
-<h2>Componentes de Composição</h2>
+<h2>Components de Composição</h2>
 
 
-Os componentes podem se referir a outros componentes em sua saída. Isso nos permite usar a mesma abstração de componente para qualquer nível de detalhe. Um botão, um formulário, um diálogo, uma tela: nos React App's, todos são comumente expressos como componentes.
+Os components podem se referir a outros components em sua saída. Isso nos permite usar a mesma abstração de componente para qualquer nível de detalhe. Um botão, um formulário, um diálogo, uma tela: nos React App's, todos são comumente expressos como components.
 
 Por exemplo, podemos modificar o App component para que ele renderize o Welcome component multiplas vezes:
 
