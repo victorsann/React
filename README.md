@@ -80,7 +80,7 @@ O comando irá criar um diretório chamado my-app dentro da pasta atual. No dire
     |
     ├── README.md
     ├── node_modules ----------------- Node package lib
-    ├── package.json ----------------- Registro de instalações
+    ├── package.json ----------------- Dependency record
     ├── .gitignore
     |
     ├── public ----------------------- Public resources
@@ -147,7 +147,7 @@ Após salvarmos as modificações, teremos um header "Hello, world!" em tela. Co
 <h1>O que é JSX ?</h1>
 
 
-É comum definirmos o HTML e o CSS como um padrão do desenvolvimento Web, o que não está incorreto, já que ambos possuem uma associação direta, onde é possível escrever código Javascript em uma file HTML utilizando a já citada tag script. Porém, é bastante comum separá-los como recursos totalmente distintos. O JSX, ou Javascript Xml, é uma subversão dessa prática, sendo uma extensão da sintaxa do Javascript, que se assemelha a uma linguagem de marcação, mas que mantém todos o rescursos.
+A maior parte das aplocações e modelos de desenvolvimento separa lógica e UI, o JSX, ou Javascript Xml, é uma subversão dessa prática, sendo uma extensão da sintaxa do Javascript que se assemelha a uma linguagem de marcação, mas que mantém todos o rescursos de uma linguagem de programação
 
 Considere a seguinte declaração:
 
