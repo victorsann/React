@@ -30,7 +30,7 @@ Como foi dito, há formas distintas de utilizar o React, podendo ser simplesment
 <h2>Node</h2>
 
 
-Aplicações Web demandam o uso de uma série de recursos para diferentes funcionalidades, como packages e libs específicas. O Javascript, e por consequência, aplicações que fazem uso deste contam com o Node e seu package manager(npm) para tal. Sendo este um host de inúmeros packages e bibliotecas de terceiros que proporcionam inúmeros recursos a serem utilizados no desenvolvimento. 
+Aplicações Web demandam o uso de uma série de recursos para diferentes funcionalidades, como packages e libs específicas. O Javascript, e por consequência libs como o React, que fazem uso deste, contam com o Node e seu package manager(npm) para tal. Sendo ele um host de inúmeros packages e bibliotecas de terceiros que proporcionam inúmeros recursos a serem utilizados no desenvolvimento. 
 
 Dada esta necessidade, a documentação a seguir mostra como instalar o Node e define algumas características importantes da ferramenta: [Node](https://github.com/VictorSantos12/Node.js)
 
@@ -130,7 +130,7 @@ Como resultado, temos uma aplicação React rodando localmente em modo de desenv
 <h1>Hello World</h1>
 
 
-Para termos o popular Hello World em tela, faremos uma pequena modificação no projeto criado. No arquivo index.js, que nada mais é que o principal aquivo .js da aplicação, faremos a seguinda mudança:
+Para termos o popular Hello World em tela, faremos uma pequena modificação no projeto criado. No arquivo index.js, que nada mais é que o principal aquivo .js da aplicação, faremos a seguinte mudança:
 
 
     ReactDOM.render(                         ReactDOM.render(
@@ -155,23 +155,23 @@ Considere a seguinte declaração:
     const element = <h1>Hello, world!</h1>;
 
 
-Ela não se define por uma atribuíção de string à uma constante, e tão pouco como uma constante que recebe um tag HTML, é a sintaxe básica do JSX, que não desassocia ambas as definições.
+Ela não se define por uma atribuíção de string à uma constante, que é a atribuíção de um valor textual a uma unidade de armazenamento, e tão pouco como uma constante que recebe um tag HTML, é a sintaxe básica do JSX, que não desassocia ambas as definições.
 
-Em ferramentas como o Angular, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como component, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
+Em outras ferramentas de desenvolvimento, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como component, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
 
 
-    JSX ON                                                   JSX OFF
+    JSX ON                                               JSX OFF
 
-    class HelloMessage extends React.Component {             class HelloMessage extends React.Component {
-      render() {                                               render() {
-        return (                                                 return React.createElement(
-          <div>                                                    "div",
-            Hello, world!                                          "Hello, world!"
-          </div>                                                 );
-      }                                                        }
-    ReactDOM.render(                                         } 
-      <HelloMessage />,                                     ReactDOM.render(React.createElement(HelloMessage),
-      document.getElementById('hello-example')              document.getElementById('hello-example'));
+    class HelloMessage extends React.Component {        class HelloMessage extends React.Component {
+      render() {                                          render() {
+        return (                                            return React.createElement(
+          <div>                                               "div",
+            Hello, world!                                     "Hello, world!"
+          </div>                                            );
+    }                                                     }
+    ReactDOM.render(                                    } 
+      <HelloMessage />,                                 ReactDOM.render(React.createElement(HelloMessage),
+      document.getElementById('hello-example')          document.getElementById('hello-example'));
     );
 
 
