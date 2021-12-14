@@ -157,25 +157,19 @@ Considere a seguinte declaração:
 
 Ela não se define por uma atribuíção de string à uma constante, que é a atribuíção de um valor textual a uma unidade de armazenamento, e tão pouco como uma constante que recebe um tag HTML, é a sintaxe básica do JSX, que não desassocia ambas as definições.
 
-Em outras ferramentas de desenvolvimento, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como component, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
+Em outras ferramentas de desenvolvimento, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como component ou element, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
 
 
-    JSX ON                                               JSX OFF
+    JSX ON                                JSX OFF
 
-    class HelloMessage extends React.Component {        class HelloMessage extends React.Component {
-      render() {                                          render() {
-        return (                                            return React.createElement(
-          <div>                                               "div",
-            Hello, world!                                     "Hello, world!"
-          </div>                                            );
-    }                                                     }
-    ReactDOM.render(                                    } 
-      <HelloMessage />,                                 ReactDOM.render(React.createElement(HelloMessage),
-      document.getElementById('hello-example')          document.getElementById('hello-example'));
-    );
+    const element = (                     const element = React.createElement(
+      <h1 className="greeting">             'h1',
+        Hello, world!                       {className: 'greeting'},
+      </h1>                                 'Hello, world!'
+    );                                    );
 
-
-Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do component quando o JSX é utilizado, já que sua declaração é o suficiente para criá-lo. O segundo exemplo é como o Babel interpretária o primeiro, posteriormente o convertendo em HTML padrão, processo que será abordado a seguir.
+  
+Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element quando o JSX é utilizado, já que sua declaração é o suficiente para criá-lo. O segundo exemplo é como o Babel interpretária o primeiro, posteriormente o convertendo em HTML padrão, processo que será abordado a seguir.
 
 
 <h2>Babel</h2>
@@ -205,7 +199,7 @@ O processo de transpilação do Babel é dividido em três principais passos:
 
 - PARSER: Converte o código em AST(Abstract Syntax Tree), mapeando todos os elementos presentes.
 - TRANSFORMER: Manipula o AST gerado com base em um registro de possíbilidades de conversão.
-- Generator: Transforma o AST resultante do TRANSFORMER em um código Javascript otimizado para uso.
+- GENERATOR: Transforma o AST resultante do TRANSFORMER em um código Javascript otimizado para uso.
 
 
 <h2>Sintaxe</h2>
@@ -214,11 +208,11 @@ O processo de transpilação do Babel é dividido em três principais passos:
 Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente, permitindo com que basicamente qualquer expressão Javascript possa ser utilizada em conjunto com um elemento HTML. Com isso é pissível utilizar:
 
 
-<h3>Expressões Dinâmicas</h3>
+<h2>Expressões Dinâmicas</h2>
 
 
-    const name = "Victor";
-    const welcoming = <h1>Welcome, {name}!</h1>;
+    let name = "Victor";
+    let welcoming = <h1>Welcome, {name}!</h1>;
 
     ReactDOM.render(
       welcoming,
@@ -229,7 +223,7 @@ Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente, permit
 O que normalmente seria atrelado a um template string, é utilizado de forma conjunta com a tag, permitindo acessar valores através da sua instanciação dentro de chaves {}.
 
 
-<h3>Operações Aritméticas</h3>
+<h2>Operações Aritméticas</h2>
 
 
     const a = 10;
@@ -245,7 +239,7 @@ O que normalmente seria atrelado a um template string, é utilizado de forma con
 Senguindo a regra de uso das chaves, operações envolvendo expressões Javascript também podem ser utilizadas.
 
 
-<h3>Funções</h3>
+<h2>Funções</h2>
 
 
     const name = "Victor";
@@ -262,10 +256,10 @@ Senguindo a regra de uso das chaves, operações envolvendo expressões Javascri
     );
 
 
-Da mesma forma, no JSX, instâncias de funções também podem ser definidas como children de elementos HTML.
+Da mesma forma, no JSX, instâncias de funções também podem ser definidas como children de elementos HTML, permitindo passar,  por parâmetro, valores que serão utilizados.
 
 
-<h3>Expressões Condicionais</h3>
+<h2>Expressões Condicionais</h2>
 
 
     function getGreeting(user) {
@@ -282,11 +276,6 @@ Da mesma forma, no JSX, instâncias de funções também podem ser definidas com
 
 
 Elementos HTML também podem ser retornados como valores em expressões condicionais
-
-
-<h3>Estrutura de Repetição</h3>
-
-
 
 
 <h1>React DOM e a Renderização de Elementos</h1>
@@ -312,7 +301,7 @@ Diferente de elementos DOM do navegador, elementos React são objetos simples qu
 <h2>Virtual DOM</h2>
 
 
-Um detalhe importante sobre o React DOM é a sua capacidade de renderização. Como atualizar todo o template se torna muito custoso para a aplicação, o React DOM mantém uma cópia virtual dos elementos que compõem a estrutura da aplicação, chamada de Virtual DOM. Quando uma mudança de estado ocorre, o Virtual DOM detecta, através da sua cópia virtual, qual elemento foi atualizado, renderizando apenas o elemento que sofreu alteração:
+Um detalhe importante sobre o React DOM é a sua capacidade de renderização. Como atualizar todo o template se torna muito custoso para a aplicação, o React DOM mantém uma cópia virtual dos elementos que compõem a estrutura da aplicação, chamada de Virtual DOM. Quando uma mudança de estado ocorre, o Virtual DOM detecta, através da sua cópia virtual, qual elemento foi atualizado, renderizando apenas o elemento que sofreu alterações:
 
 
 <div align="center">
@@ -320,7 +309,7 @@ Um detalhe importante sobre o React DOM é a sua capacidade de renderização. C
 </div>
 
 
-Considere o exemplo a seguir:
+Considere a função tick:
 
 
     function tick() {
@@ -348,7 +337,7 @@ Mesmo que a cada segundo todo o elemento que descreve a interface seja recriado,
 <h1>Components</h1>
 
 
-Sendo um dos aspectos mais importantes da composição do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isoladas das demais. Conceitualmente, components são semelhantes a funções, que aceitam inputs arbitrários(chamados de "props") e retornam elemento React cuja função é descrever como determinada tela, ou parte desta, deverá se comportar.
+Sendo um dos aspectos mais importantes da composição do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isoladas das demais. Conceitualmente, components são semelhantes a funções, que aceitam inputs arbitrários(chamados de "props") e retornam um React element cuja função é descrever como determinada tela, ou parte desta, deverá se comportar.
 
 A forma mais simples de definir um component é declarando uma função Javascript:
 
@@ -358,7 +347,7 @@ A forma mais simples de definir um component é declarando uma função Javascri
     }
 
 
-Porém, a forma mais comum de declarar um component é utilizando o modelo de classes do [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), que contam com algumas features adicionais que veremos posteriormente:
+Porém, a forma mais comum de declarar um component é utilizando o modelo de classes do [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), que contam com algumas features adicionais que veremos mais adiante:
 
 
     class Welcome extends React.Component {
@@ -368,7 +357,7 @@ Porém, a forma mais comum de declarar um component é utilizando o modelo de cl
     }
 
 
-Do ponto de vista do React, ambas classes e funções equivalem a um component. É possível observar esta ideia no App component gerado pelo projeto anterioemente criado:
+Do ponto de vista do React, ambas classes e funções equivalem a um component. É possível observar esta ideia no App component gerado pelo projeto anteriormente criado:
 
 
     function App() {
@@ -515,7 +504,7 @@ O exemplo não implica em mostrar problemas de má funcionalidade, mas sim de po
 
 Estando isolado dos demais, o Avatar não precisa saber que está sendo utilizado em um comentário, perfil e etc. O React recomenda nomear components com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado. 
 
-Agora, dentro da estrutura do Comment, temos uma quebra de informações. Já seria possíel utilizar o Avatar component, porém, o mesmo faz parte das informações do usuário, e por definição o UserInfo deve conter o Avatar:
+Agora, dentro da estrutura do Comment, temos uma quebra de informações. Já seria possível utilizar o Avatar component, porém, o mesmo faz parte das informações do usuário, e por definição, o UserInfo deve conter o Avatar:
 
 
     function UserInfo(props) {
@@ -546,4 +535,31 @@ Essa quebrar permite simplificar ainda mais o Comment component, que passou a se
         </div>
       );
     }
+
+
+<h1>State & Lifecycle</h1>
+
+
+Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações, e para ter tal controle é importante entender como aplicar e utilizar o state em um component e como o seu ciclo de vida afeta essa funcionalidade. 
+
+Em um exemplo anterior, foi visto como o React renderiza especificamente os elementos que sofreram alterações através do Virtual DOM, a seguir iremos entender como aplicar o conceito de State permite tornar este conceito ainda mais simples.
+
+Considere a função, ou Component, tick anteriormente vista:
+
+
+    function tick() {
+      const element = (
+        <div>
+          <h1>Hello, world!</h1>
+          <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        </div>
+      );
+      ReactDOM.render(
+        element,
+        document.getElementById('root')
+      );
+    }
+    
+    setInterval(tick, 1000);
+
 
