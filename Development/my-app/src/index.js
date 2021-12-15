@@ -4,6 +4,12 @@ import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+
 ReactDOM.render(
   <App />,
   document.getElementById('root')

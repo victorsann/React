@@ -186,13 +186,13 @@ O React conta com várias ferramentas para suprir esta nessecidade, porém, a ma
 O babel converteria a arrow function do exemplo acima para versões mais antigas do Javascript da seguinte forma:
 
 
-> // es2016                // es2015
+     // es2016                // es2015
 
->  "use strict";            "use strict";
->  
-> (x, y) => {              (function (x, y) => {
->   return x + y;            return x + y;
-> }                        });
+     "use strict";            "use strict";
+      
+     (x, y) => {              (function (x, y) => {
+       return x + y;            return x + y;
+     }                        });
 
 
 O processo de transpilação do Babel é dividido em três principais passos:
@@ -281,12 +281,6 @@ Elementos HTML também podem ser retornados como valores em expressões condicio
 <h1>React DOM e a Renderização de Elementos</h1>
 
 
-Elemento é a designação dada as partes que compõem a user interface, sendo basicamente uma descrição do que é visto em tela:
-
-    
-    const element = <h1>Hello, world</h1>;
-
-
 Diferente de elementos DOM do navegador, elementos React são objetos simples que utilizam menos recursos. O React DOM é o responsável por renderizar e atualizar esses elementos. Além disso, aplicações React, normalmente, contam com um elemento chamado de root node, permitindo que o React DOM gerencie toda a aplicação a partir de um único ponto. E para rederizar um elemento React, passamos ambos elemento e root como parâmetros da função ReactDOM.render():
 
     
@@ -337,7 +331,7 @@ Mesmo que a cada segundo todo o elemento que descreve a interface seja recriado,
 <h1>Components</h1>
 
 
-Sendo um dos aspectos mais importantes da composição do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isoladas das demais. Conceitualmente, components são semelhantes a funções, que aceitam inputs arbitrários(chamados de "props") e retornam um React element cuja função é descrever como determinada tela, ou parte desta, deverá se comportar.
+Sendo um dos aspectos mais importantes da estrutura do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isolada das demais.
 
 A forma mais simples de definir um component é declarando uma função Javascript:
 
@@ -347,7 +341,7 @@ A forma mais simples de definir um component é declarando uma função Javascri
     }
 
 
-Porém, a forma mais comum de declarar um component é utilizando o modelo de classes do [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), que contam com algumas features adicionais que veremos mais adiante:
+O React também permite declarar components seguindo o modelo de classes do [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), que contam com algumas features adicionais quando comparadas com as funções, as quais serão abordadas posteriormente:
 
 
     class Welcome extends React.Component {
@@ -357,7 +351,40 @@ Porém, a forma mais comum de declarar um component é utilizando o modelo de cl
     }
 
 
-Do ponto de vista do React, ambas classes e funções equivalem a um component. É possível observar esta ideia no App component gerado pelo projeto anteriormente criado:
+Para declarar uma classe como um React component, como no exemplo acima, basicamente declaramos uma class ES6, que consiste na palavra-chave <i>class</i> seguida do namespace da classe. Em seguida, essa classe deve ser declarada como um extends(herdeira) da classe React.Components, que permite identificá-la como um component dentro do template. Nela faremos uso do método render(), que irá retornar um JSX equivalente ao component.
+
+
+<h2>Renderizando um Component</h2>
+
+
+Os declarados elements no React, além de tags DOM, também podem ser os chamados user-defined components, que nada mais são que uma instância de uma function ou class, equivalente a um component, dentro do tamplate. Sendo representada por uma tag que carrega o identificador do component. Por exemplo:
+
+
+    const element = <Welcome name="Victor" />
+
+
+O identificador, ou nome de um component, deve sempre ser atribuído com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado.
+
+
+<h2>Props</h2>
+
+
+As Props são valores atribuídos aos components, semelhantes a parâmetros passados em instâncias de funções, sendo exatamente isso caso o component em questão seja uma function. Em class components, as props são um override da propriedade props da classe React.Component:
+
+                                                V
+    (property) React.Component<any, any, any>.props: Readonly<any> & Readonly<{
+        children?: React.ReactNode;
+    }>
+
+
+Logo, para acessá-la é preciso utilizar o identificador <i>this.</i>.
+
+
+<h2>Cinclo de Vida</h2>
+
+
+
+<!-- Do ponto de vista do React, ambas classes e funções equivalem a um component. É possível observar esta ideia no App component gerado pelo projeto anteriormente criado:
 
 
     function App() {
@@ -384,10 +411,10 @@ Do ponto de vista do React, ambas classes e funções equivalem a um component. 
     export default App;
 
 
-Perceba que ele nada mais é que uma função retornando um JSX element, que é exportada e utilizada como base para a aplicação.
+Perceba que ele nada mais é que uma função retornando um JSX element, que é exportada e utilizada como base para a aplicação. -->
 
 
-<h2>Renderizando Components</h2>
+<!-- <h2>Renderizando Components</h2>
 
 
 Ainda com o App Component em mente, perceba que um elemento que o representa compõe os parâmetro declarados na render function do React Dom na index.js file:
@@ -421,10 +448,10 @@ Contudo, elementos também podem representar os chamados user-defined components
     ReactDOM.render(
       element,
       document.getElementById('root')
-    );
+    ); -->
 
 
-<h2>Components de Composição</h2>
+<!-- <h2>Components de Composição</h2>
 
 
 Os components podem se referir a outros components em sua saída. Isso nos permite usar a mesma abstração de componente para qualquer nível de detalhe. Um botão, um formulário, um dialog, uma tela: nos React App's, todos são comumente expressos como components.
@@ -534,7 +561,7 @@ Essa quebrar permite simplificar ainda mais o Comment component, que passou a se
           </div>
         </div>
       );
-    }
+    } -->
 
 
 <h1>State & Lifecycle</h1>
