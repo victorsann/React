@@ -336,7 +336,7 @@ Sendo um dos aspectos mais importantes da estrutura do React, a componentizaçã
 A forma mais simples de definir um component é declarando uma função Javascript:
 
 
-    function Welcome(props) {
+    function WelcomeMessage(props) {
       return <h1>Hello, {props.name}</h1>;
     }
 
@@ -344,7 +344,7 @@ A forma mais simples de definir um component é declarando uma função Javascri
 O React também permite declarar components seguindo o modelo de classes do [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), que contam com algumas features adicionais quando comparadas com as funções, as quais serão abordadas posteriormente:
 
 
-    class Welcome extends React.Component {
+    class WelcomeMessage extends React.Component {
       render() {
         return <h1>Hello, {this.props.name}</h1>;
       }
@@ -360,10 +360,10 @@ Para declarar uma classe como um React component, como no exemplo acima, basicam
 Os declarados elements no React, além de tags DOM, também podem ser os chamados user-defined components, que nada mais são que uma instância de uma function ou class, equivalente a um component, dentro do tamplate. Sendo representada por uma tag que carrega o identificador do component. Por exemplo:
 
 
-    const element = <Welcome name="Victor" />
+    const element = <WelcomeMessage name="Victor" />
 
 
-O identificador, ou nome de um component, deve sempre ser atribuído com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado.
+O identificador, ou nome de um component, deve sempre ser atribuído com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado, além de seguir o camelCase como modelo de nomenclatura, que o diferencia dos elementos HTML padrão.
 
 
 <h2>Props</h2>
