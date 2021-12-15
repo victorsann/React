@@ -564,7 +564,7 @@ Essa quebrar permite simplificar ainda mais o Comment component, que passou a se
     } -->
 
 
-<h1>State & Lifecycle</h1>
+<h1>State</h1>
 
 
 Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações, e para ter tal controle, é importante entender como aplicar e utilizar o State em um component e como o seu ciclo de vida afeta essa funcionalidade. 
@@ -593,6 +593,6 @@ Considere a função, ou Component, tick anteriormente vista:
 Como já foi definido, a atualização neste exemplo só ocorre porque todo o component sofre um re-render a cada segundo, tempo definido no método setInterval(). Ao aplicar o state, o component será chamado apenas uma vez, se atualizando por conta própria.
 
 
-<h2>Convertendo uma Function em Class</h2>
+<!-- <h2>Convertendo uma Function em Class</h2> -->
 
 
