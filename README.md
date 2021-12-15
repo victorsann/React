@@ -186,13 +186,13 @@ O React conta com várias ferramentas para suprir esta nessecidade, porém, a ma
 O babel converteria a arrow function do exemplo acima para versões mais antigas do Javascript da seguinte forma:
 
 
-     // es2016                // es2015
+> // es2016                // es2015
 
-     "use strict";            "use strict";
-      
-     (x, y) => {              (function (x, y) => {
-       return x + y;            return x + y;
-     }                        });
+>  "use strict";            "use strict";
+>  
+> (x, y) => {              (function (x, y) => {
+>   return x + y;            return x + y;
+> }                        });
 
 
 O processo de transpilação do Babel é dividido em três principais passos:
