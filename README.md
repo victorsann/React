@@ -155,9 +155,9 @@ Considere a seguinte declaração:
     const element = <h1>Hello, world!</h1>;
 
 
-Ela não se define por uma atribuíção de string à uma constante, que é a atribuíção de um valor textual a uma unidade de armazenamento, e tão pouco como uma constante que recebe um tag HTML, é a sintaxe básica do JSX, que não desassocia ambas as definições.
+É comum pensar que a tag h1 teria o mesmo valor semântico das aspas em uma String, porém, não é o caso. O JSX matem o valor semântico de qualquer tag HTML em sua sintaxe, logo, caso a const element sofra instância, o valor acessado através dela será um header e seu children(texto nele contido). O mesmo pode ser dito de pritacamente qualquer tag HTML.
 
-Em outras ferramentas de desenvolvimento, o desacoplamento de lógica e UI é simplesmente o padrão. O React tranta ambos como uma única coisa, definida como component ou element, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o JSX não é obrigatório dentro de um projeto React, o que podemos ver no exemplo a seguir:
+O React tranta lógica e UI como uma única coisa, definida como element ou component, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o uso do JSX não é obrigatório dentro de um projeto React, o que pode ser visto no exemplo a seguir:
 
 
     JSX ON                                JSX OFF
@@ -169,7 +169,7 @@ Em outras ferramentas de desenvolvimento, o desacoplamento de lógica e UI é si
     );                                    );
 
   
-Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element quando o JSX é utilizado, já que sua declaração é o suficiente para criá-lo. O segundo exemplo é como o Babel interpretária o primeiro, posteriormente o convertendo em HTML padrão, processo que será abordado a seguir.
+Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element, que passa a ser uma tag HTML quando o JSX é utilizado, e sua declaração é o suficiente para criá-lo. O segundo exemplo é como o Babel interpretária o primeiro, posteriormente o convertendo em HTML padrão, processo que será abordado a seguir.
 
 
 <h2>Babel</h2>
@@ -205,7 +205,7 @@ O processo de transpilação do Babel é dividido em três principais passos:
 <h2>Sintaxe</h2>
 
 
-Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente, permitindo com que basicamente qualquer expressão Javascript possa ser utilizada em conjunto com um elemento HTML. Com isso é pissível utilizar:
+Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente, permitindo com que basicamente qualquer expressão Javascript possa ser utilizada em conjunto com estruturas de marcação. Com isso é pissível utilizar:
 
 
 <h2>Expressões Dinâmicas</h2>
@@ -540,9 +540,9 @@ Essa quebrar permite simplificar ainda mais o Comment component, que passou a se
 <h1>State & Lifecycle</h1>
 
 
-Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações, e para ter tal controle é importante entender como aplicar e utilizar o state em um component e como o seu ciclo de vida afeta essa funcionalidade. 
+Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações, e para ter tal controle, é importante entender como aplicar e utilizar o State em um component e como o seu ciclo de vida afeta essa funcionalidade. 
 
-Em um exemplo anterior, foi visto como o React renderiza especificamente os elementos que sofreram alterações através do Virtual DOM, a seguir iremos entender como aplicar o conceito de State permite tornar este conceito ainda mais simples.
+Em um exemplo anterior, foi visto como o React renderiza, através do Virtual DOM, especificamente os elementos que sofreram alterações; a seguir iremos entender como aplicar o State ao mesmo exemplo, o tornando ainda mais simples.
 
 Considere a função, ou Component, tick anteriormente vista:
 
@@ -561,5 +561,11 @@ Considere a função, ou Component, tick anteriormente vista:
     }
     
     setInterval(tick, 1000);
+
+
+Como já foi definido, a atualização neste exemplo só ocorre porque todo o component sofre um re-render a cada segundo, tempo definido no método setInterval(). Ao aplicar o state, o component será chamado apenas uma vez, se atualizando por conta própria.
+
+
+<h2>Convertendo uma Function em Class</h2>
 
 
