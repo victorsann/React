@@ -333,7 +333,11 @@ Sendo uma instância da const render, que é um dos atributos do ReactDOM, o ren
 
 
     const render: ReactDOM.Renderer
-    (element: React.FunctionComponentElement<any> | React.FunctionComponentElement<any>[], container: ReactDOM.Container, callback?: () => void) => void (+6 overloads)
+    (
+      element: React.FunctionComponentElement<any> | React.FunctionComponentElement<any>[], 
+      container: ReactDOM.Container, 
+      callback?: () => void
+    ) => void (+6 overloads)
 
 
 Um detalhe importante sobre o atributo container é que em aplicações que utilizam apenas o React, sempre haverá apesas um, e é a partir dele que toda a aplicação será renderizada e gerenciada pelo React DOM. Sendo chamado de root DOM node, que basicamente é uma div com o id root, que é declarada na index.html da aplicação. O exemplo a seguir foi retirado do my-app criado anteriormente:
@@ -348,7 +352,6 @@ Um detalhe importante sobre o atributo container é que em aplicações que util
       <App />,
       document.getElementById('root')
     );
-
 
 
 <h2>Virtual DOM</h2>
@@ -392,7 +395,7 @@ Observe que mesmo que a cada segundo todo o elemento que descreve a interface se
 
 Sendo um dos aspectos mais importantes da estrutura do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isolada das demais.
 
-A forma mais simples de definir um component é declarando uma função Javascript:
+A forma mais simples de declarar um component é criando uma função Javascript:
 
 
     function WelcomeMessage(props) {
@@ -400,26 +403,41 @@ A forma mais simples de definir um component é declarando uma função Javascri
     }
 
 
-O React também permite declarar components seguindo o modelo de classes do [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), que contam com algumas features adicionais quando comparadas com as funções, as quais serão abordadas posteriormente:
+O React também permite declarar components seguindo o modelo de classes do [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), que contam com algumas features adicionais, as quais serão abordadas posteriormente:
 
 
     class WelcomeMessage extends React.Component {
       render() {
-        return <h1>Hello, {this.props.name}</h1>;
+        return <h1>Welcome!</h1>;
       }
     }
 
 
-Para declarar uma classe como um React component, como no exemplo acima, basicamente declaramos uma class ES6, que consiste na palavra-chave <i>class</i> seguida do namespace da classe. Em seguida, essa classe deve ser declarada como um extends(herdeira) da classe React.Components, que permite identificá-la como um component dentro do template. Nela faremos uso do método render(), que irá retornar um JSX equivalente ao component.
+Para declarar uma classe como um React component, como no exemplo acima, basicamente declaramos uma class ES6, que consiste na palavra-chave <i>class</i> seguida do <i>namespace</i>. Seguidamente, essa classe deve ser declarada como um extends(herdeira) da classe React.Components, que permite identificá-la como um component dentro do template. Nela faremos uso do método render, que irá retornar um JSX equivalente aos elementos do component, podendo ser single-line, como no exemplo acima, ou multi-line, como no exemplo a seguir:
+
+
+    class MyComponent extends React.Component {
+      render() {
+        return (
+          <React.Fragment>
+            <h1>1st element</h1>
+            <h1>2nd element</h1>
+          </React.Fragment>
+        );
+      }
+    }
+
+
+Uma expressão Multi-line JSX é definida dentro de parenteses, que por sua vez carrega um único element HTML, normalmente sendo um React.Fragment, ou apenas uma tag vazia(<></>) que terá os demais como children. 
 
 
 <h2>Renderizando um Component</h2>
 
 
-Os declarados elements no React, além de tags DOM, também podem ser os chamados user-defined components, que nada mais são que uma instância de uma function ou class, equivalente a um component, dentro do tamplate. Sendo representada por uma tag que carrega o identificador do component. Por exemplo:
+Os declarados elements no React, além de tags DOM, podem ser os chamados user-defined components, que nada mais são que uma instância de uma function ou class, equivalente a um component, dentro do tamplate. Sendo representada por uma tag que carrega o identificador do component. Por exemplo:
 
 
-    const element = <WelcomeMessage name="Victor" />
+    const element = <WelcomeMessage />
 
 
 O identificador, ou nome de um component, deve sempre ser atribuído com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado, além de seguir o camelCase como modelo de nomenclatura, que o diferencia dos elementos HTML padrão.
@@ -428,7 +446,7 @@ O identificador, ou nome de um component, deve sempre ser atribuído com base em
 <h2>Props</h2>
 
 
-As Props são valores atribuídos imutáveis aos components, semelhantes a parâmetros passados em instâncias de funções, sendo exatamente isso caso o component em questão seja uma function. Em class components, as props são um override da propriedade props da classe React.Component:
+As Props são valores imutáveis atribuídos aos components, semelhantes a parâmetros passados em instâncias de funções, sendo exatamente isso caso o component em questão seja uma function. Em class components, as props são um override da propriedade props da classe React.Component:
 
                                                 V
     (property) React.Component<any, any, any>.props: Readonly<any> & Readonly<{
@@ -436,192 +454,25 @@ As Props são valores atribuídos imutáveis aos components, semelhantes a parâ
     }>
 
 
-E por consequência, faz parte do component em si, Logo, para acessá-la é preciso utilizar o identificador <i>this.</i>.
+Porps são essencialmente declaradas como type any, sendo passadas quando um component sofre instância, como por exemplo:
+
+
+    <WelcomeMessage name="Victor" />
+
+
+Caso o component em questão seja uma class, as props são acessadas através do identificador <i>this.</i>, onde o nome definido na instanciação do component será acessado por dot notation:
+
+    ...
+
+    <h1>Welcome, {this.props.name}!</h1>;
+
+    ...
 
 
 <h2>Cinclo de Vida</h2>
 
 
 
-
-<!-- Do ponto de vista do React, ambas classes e funções equivalem a um component. É possível observar esta ideia no App component gerado pelo projeto anteriormente criado:
-
-
-    function App() {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
-      );
-    }
-    
-    export default App;
-
-
-Perceba que ele nada mais é que uma função retornando um JSX element, que é exportada e utilizada como base para a aplicação. -->
-
-
-<!-- <h2>Renderizando Components</h2>
-
-
-Ainda com o App Component em mente, perceba que um elemento que o representa compõe os parâmetro declarados na render function do React Dom na index.js file:
-
-
-    import App from './App';
-    
-    ...
-
-    ReactDOM.render(
-      <App />,
-      document.getElementById('root')
-    );
-
-
-Esta representação demonstra uma das características do JSX, que é a criação de tags customizadas, cuja função é instanciar um component dentro da árvore de objetos DOM, fazendo com ele possa ser renderizado ou reaproveitado em diversos pontos da aplicação. Normalmente se associa ao HTML elementos DOM que representem tags HTML, como:
-
-    
-    const element = <div />
-
-
-Contudo, elementos também podem representar os chamados user-defined components, como por exemplo:
-
-    
-    function Welcome(props) {
-      return <h1>Hello, {props.name}</h1>;
-    }
-    
-    const element = <Welcome name="Victor" />; // user-defined component
-    
-    ReactDOM.render(
-      element,
-      document.getElementById('root')
-    ); -->
-
-
-<!-- <h2>Components de Composição</h2>
-
-
-Os components podem se referir a outros components em sua saída. Isso nos permite usar a mesma abstração de componente para qualquer nível de detalhe. Um botão, um formulário, um dialog, uma tela: nos React App's, todos são comumente expressos como components.
-
-Por exemplo, podemos modificar o App component para que ele renderize o Welcome component multiplas vezes:
-
-
-    function Welcome(props) {
-      return <h1>Hello, {props.name}</h1>;
-    }
-    
-    function App() {
-      return (
-        <div>
-          <Welcome name="Sara" />
-          <Welcome name="Cahal" />
-          <Welcome name="Edite" />
-        </div>
-      );
-    }
-    
-    ReactDOM.render(
-      <App />,
-      document.getElementById('root')
-    );
-
-
-<h2>Extraindo Components</h2>
-
-
-É bastante comum que em uma coposição de tela vários components surjam. Caso uma tela demande uma grande quantidade de elementos, é recomendado que se extraia esses elementos e que se crie novos components a partir destes. Por exemplo, imagine o seguinte serário:
-
-Em uma aplicação, considere o componente comentário, com determinadas informações sobre o usuário que o fez:
-
-<div align="center">
- <img src ="https://user-images.githubusercontent.com/61476935/145455941-3e75eb02-0e37-46f2-943c-cb6ec5ec6d12.png">
-</div>
-
-Informações como o avatar, nome e o texto irão se repetir para cada comentário feito. Então digamos que como resultado do modelo, foi criado o seguinte component:
-
-
-    function Comment(props) {
-      return (
-        <div className="Comment">
-          <div className="UserInfo">
-            <img className="Avatar"
-              src={props.author.avatarUrl}
-              alt={props.author.name}
-            />
-            <div className="UserInfo-name">
-              {props.author.name}
-            </div>
-          </div>
-          <div className="Comment-text">
-            {props.text}
-          </div>
-          <div className="Comment-date">
-            {formatDate(props.date)}
-          </div>
-        </div>
-      );
-    }
-
-
-O exemplo não implica em mostrar problemas de má funcionalidade, mas sim de pouca eficiência em termos de reúso das pequenas partes que fazem parte do component. Portanto, criaremos novos components a partir do Comment, facilitando o processo de reaproveitamento e de manutenção do código. Começando com o Avatar:
-
-
-    function Avatar(props) {
-      return (
-        <img className="Avatar"
-          src={props.user.avatarUrl}
-          alt={props.user.name}
-        />
-      );
-    }
-
-
-Estando isolado dos demais, o Avatar não precisa saber que está sendo utilizado em um comentário, perfil e etc. O React recomenda nomear components com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado. 
-
-Agora, dentro da estrutura do Comment, temos uma quebra de informações. Já seria possível utilizar o Avatar component, porém, o mesmo faz parte das informações do usuário, e por definição, o UserInfo deve conter o Avatar:
-
-
-    function UserInfo(props) {
-      return (
-        <div className="UserInfo">
-          <Avatar user={props.user} />
-          <div className="UserInfo-name">
-            {props.user.name}
-          </div>
-        </div>
-      );
-    }
-
-
-Essa quebrar permite simplificar ainda mais o Comment component, que passou a ser estruturado da seguinte forma:
-
-
-    function Comment(props) {
-      return (
-        <div className="Comment">
-          <UserInfo user={props.author} />
-          <div className="Comment-text">
-            {props.text}
-          </div>
-          <div className="Comment-date">
-            {formatDate(props.date)}
-          </div>
-        </div>
-      );
-    } -->
 
 
 <h1>State</h1>
@@ -653,6 +504,5 @@ Considere a função, ou Component, tick anteriormente vista:
 Como já foi definido, a atualização neste exemplo só ocorre porque todo o component sofre um re-render a cada segundo, tempo definido no método setInterval(). Ao aplicar o state, o component será chamado apenas uma vez, se atualizando por conta própria.
 
 
-<!-- <h2>Convertendo uma Function em Class</h2> -->
 
 
