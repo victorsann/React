@@ -24,7 +24,7 @@ Com uma estrutura declarativa e reativa baseada em components, o React possui fl
 <h2>Ambiente de Desenvolvimento</h2>
 
 
-Como foi dito, há formas distintas de utilizar o React, podendo ser simplesmente aplicado a um tag script em uma file HTML ou ter uma aplicação completamente voltada para seu uso. Tendo isso em mente, a seguir veremos o que é necessário para criar uma single-page application em React do zero, e como ela irá se comportar:
+Como foi dito, há formas distintas de utilizar o React, podendo ser simplesmente aplicado a um tag script em uma file HTML ou ter uma aplicação completamente voltada para seu uso. Tendo isso em mente, a seguir veremos como criar um projeto React, além de nos aprofundarmos nas características da ferramenta:
 
 
 <h2>Node</h2>
@@ -49,7 +49,7 @@ Certifique-se de ter instalado uma versão do Node acima da 14.0.0 e 6+ do npm, 
 <h1>Criando um React App</h1>
 
 
-Após a instalação do Node, já é possível criar uma aplicação React totalmente do zero. Para isso, acesse o diretório onde o projeto será criado, através do terminal, e execute um dos comandos a seguir:
+Com a instalação do Node, já é possível criar uma aplicação React totalmente do zero. Para isso, acesse o diretório onde o projeto será criado, através do terminal, e execute um dos comandos a seguir:
 
 
 <h3>npx</h3>
@@ -73,7 +73,10 @@ O [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7
     yarn create react-app my-app
 
 
-O comando irá criar um diretório chamado my-app dentro da pasta atual. No diretório, será gerada a estrutura inicial da aplicação e algumas dependências, as quais serão mais bem abordadas adiante:
+O yarn é uma package manager alternativo ao npm, sendo bastante utilizada por desenvolvedores React.
+
+
+O comando irá criar um diretório chamado my-app dentro da pasta atual. No diretório, será gerada a estrutura inicial da aplicação e algumas dependências:
 
 
     my-app
@@ -95,17 +98,17 @@ O comando irá criar um diretório chamado my-app dentro da pasta atual. No dire
         ├── index.css ---------------- Main CSS file
         ├── index.js ----------------- Main JS file
         ├── logo.svg ----------------- App icon
-        └── setupTests.js ------------ Jest file
+        └── setupTests.js ------------ Unit testing file
 
 
 Sem qualquer configuração ou estrutura de compilação, o diretório apenas conta com o necessário para inicializar um React app. Uma vez que a instalação foi concluída, é possível fazer o run do projeto com um dos comandos a seguir:
 
 
-    yarn start
+    npm start
 
 <br>
 
-    npm start 
+    yarn start 
 
 
 Como resultado, temos uma aplicação React rodando localmente em modo de desenvolvimento:
@@ -130,7 +133,7 @@ Como resultado, temos uma aplicação React rodando localmente em modo de desenv
 <h1>Hello World</h1>
 
 
-Para termos o popular Hello World em tela, faremos uma pequena modificação no projeto criado. No arquivo index.js, que nada mais é que o principal aquivo .js da aplicação, faremos a seguinte mudança:
+Para termos o popular Hello World em tela, faremos uma pequena modificação no projeto criado. No arquivo index.js, que nada mais é que o principal arquivo .js da aplicação, a partir do qual toda a aplicação é renderizada, faremos a seguinte mudança:
 
 
     ReactDOM.render(                         ReactDOM.render(
@@ -155,9 +158,9 @@ Considere a seguinte declaração:
     const element = <h1>Hello, world!</h1>;
 
 
-É comum pensar que a tag h1 teria o mesmo valor semântico das aspas em uma String, porém, não é o caso. O JSX matem o valor semântico de qualquer tag HTML em sua sintaxe, logo, caso a const element sofra instância, o valor acessado através dela será um header e seu children(texto nele contido). O mesmo pode ser dito de pritacamente qualquer tag HTML.
+É comum pensar que a tag h1 teria o mesmo valor semântico das aspas em uma String, porém, não é o caso. O JSX matem o valor semântico de qualquer tag HTML em sua sintaxe, logo, caso a const element sofra instância, o valor acessado através dela será um header e seu children(texto nele contido). O mesmo pode ser dito de pritacamente qualquer tag HTML quando aplicada ao JSX.
 
-O React tranta lógica e UI como uma única coisa, definida como element ou component, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o uso do JSX não é obrigatório dentro de um projeto React, o que pode ser visto no exemplo a seguir:
+Disso pode-se concluir que o React tranta lógica e UI como uma única coisa, definida como element ou component, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o uso do JSX não é obrigatório dentro de um projeto React, o que pode ser visto no exemplo a seguir:
 
 
     JSX ON                                JSX OFF
@@ -169,7 +172,7 @@ O React tranta lógica e UI como uma única coisa, definida como element ou comp
     );                                    );
 
   
-Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element, que passa a ser uma tag HTML quando o JSX é utilizado, e sua declaração é o suficiente para criá-lo. O segundo exemplo é como o Babel interpretária o primeiro, posteriormente o convertendo em HTML padrão, processo que será abordado a seguir.
+Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element, que passa a ser uma tag HTML comum quando o JSX é utilizado, e sua declaração é o suficiente para criá-lo. O segundo exemplo é como o Babel interpretária o primeiro, posteriormente o convertendo em HTML padrão, processo que será abordado a seguir.
 
 
 <h2>Babel</h2>
@@ -220,7 +223,7 @@ Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente, permit
     );
 
 
-O que normalmente seria atrelado a um template string, é utilizado de forma conjunta com a tag, permitindo acessar valores através da sua instanciação dentro de chaves {}.
+O que normalmente seria atrelado a um template string, é utilizado de forma conjunta com a tag, permitindo acessar valores através da sua instanciação dentro de chaves.
 
 
 <h2>Operações Aritméticas</h2>
@@ -256,7 +259,7 @@ Senguindo a regra de uso das chaves, operações envolvendo expressões Javascri
     );
 
 
-Da mesma forma, no JSX, instâncias de funções também podem ser definidas como children de elementos HTML, permitindo passar,  por parâmetro, valores que serão utilizados.
+Nno JSX, instâncias de funções também podem ser definidas como children de elementos HTML, permitindo passar,  por parâmetro, valores que serão utilizados.
 
 
 <h2>Expressões Condicionais</h2>
@@ -275,27 +278,83 @@ Da mesma forma, no JSX, instâncias de funções também podem ser definidas com
     );
 
 
-Elementos HTML também podem ser retornados como valores em expressões condicionais
+Elementos HTML também podem ser retornados como valores em expressões condicionais.
 
 
 <h1>React DOM e a Renderização de Elementos</h1>
 
 
-Diferente de elementos DOM do navegador, elementos React são objetos simples que utilizam menos recursos. O React DOM é o responsável por renderizar e atualizar esses elementos. Além disso, aplicações React, normalmente, contam com um elemento chamado de root node, permitindo que o React DOM gerencie toda a aplicação a partir de um único ponto. E para rederizar um elemento React, passamos ambos elemento e root como parâmetros da função ReactDOM.render():
+Dentre os processos da compilação de uma aplicação Web, a renderização de elementos DOM é o mais custozo, tendo que lidar com frame updating, animations, style sheet e entre outros elementos de User Interface, todos ao mesmo tempo. Assim sendo, interagir com o Document Object Model(DOM), para atualizar um elemento por exemplo, demanda muito mais tempo e consumo de memória quando comparado ao processo de interpretação em single thread de uma .js file.
+
+Divergindo dos documentos HTML diretamente rederizados pelo navegador, os React Components e os elementos que os produzem são objetos mais simples, cujo processo de interpretação é intermediado pelo próprio React, ou melhor, React DOM, que é um equivalente ao DOM, porém, otimizado para interpretar código JSX e gerar o que por fim será interpratado pelo DOM. Observe o exemplo a seguir:
+
+
+    function MyComponent() {
+      return(
+        <main>
+          <h1 id="title">Hello, world!</h1>
+        </main>
+      )
+    }
+
+
+Os React Components em si serão mais bem abordados posteriromente, no momento o importante é entender como estes são renderizados e interpretados pelo React DOM, que no caso do exemplo acima seria:
 
     
-    const element = <h1>Hello, world</h1>;
+    {
+      type: "main",
+      key: null,
+      ref: null,
+      "$$typeof": Symbol(rect.element),
+      props: {
+        children: {
+          type: "h1",
+          key: null,
+          ref: null,
+          props: {
+            id: "title",
+            children: "Hello, world!"
+          }
+        }
+      }
+    }
 
+
+<h2>Render Method</h2>
+    
+
+O React DOM conta com o render method, este que será visto em praticamente qualquer estrutura que renderize JSX elements. Ele segue a estrutura a seguir:
+
+    
+    ReactDOM.render(element, container[, callback])
+
+
+Sendo uma instância da const render, que é um dos atributos do ReactDOM, o render method recebe dois parâmetros: o elemento a ser renderizado, podendo ser apenas um ou vários agrupados em um único; e um container, que define onde a renderização irá ocorrer. A estrutura do reder method pode ser vista em detalhes a seguir:
+
+
+    const render: ReactDOM.Renderer
+    (element: React.FunctionComponentElement<any> | React.FunctionComponentElement<any>[], container: ReactDOM.Container, callback?: () => void) => void (+6 overloads)
+
+
+Um detalhe importante sobre o atributo container é que em aplicações que utilizam apenas o React, sempre haverá apesas um, e é a partir dele que toda a aplicação será renderizada e gerenciada pelo React DOM. Sendo chamado de root DOM node, que basicamente é uma div com o id root, que é declarada na index.html da aplicação. O exemplo a seguir foi retirado do my-app criado anteriormente:
+
+    ...
+
+    import App from './App';
+
+    ...
+    
     ReactDOM.render(
-      element, 
+      <App />,
       document.getElementById('root')
     );
+
 
 
 <h2>Virtual DOM</h2>
 
 
-Um detalhe importante sobre o React DOM é a sua capacidade de renderização. Como atualizar todo o template se torna muito custoso para a aplicação, o React DOM mantém uma cópia virtual dos elementos que compõem a estrutura da aplicação, chamada de Virtual DOM. Quando uma mudança de estado ocorre, o Virtual DOM detecta, através da sua cópia virtual, qual elemento foi atualizado, renderizando apenas o elemento que sofreu alterações:
+O React DOM ainda conta com o Virtual DOM, que consiste em uma cópia virtual dos elementos que compõem a estrutura da aplicação. Quando uma mudança de estado ocorre, o Virtual DOM detecta, através da sua cópia virtual, qual elemento foi atualizado, renderizando apenas o elemento que sofreu alterações:
 
 
 <div align="center">
@@ -303,7 +362,7 @@ Um detalhe importante sobre o React DOM é a sua capacidade de renderização. C
 </div>
 
 
-Considere a função tick:
+Considere o exemplo a seguir:
 
 
     function tick() {
@@ -319,13 +378,13 @@ Considere a função tick:
     setInterval(tick, 1000);
 
 
-Nele, a função tick, que contém a execução do método ReactDom.render(), é chamada a cada segundo, resultando em uma constante atualização da UI:
+Nele, a função tick, que contém a execução do método ReactDom.render(), é chamada a cada segundo, resultando em uma constante atualização da interface:
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/61476935/145409269-952df923-f079-4f03-b2db-ebb0edc8b8b2.gif">
 </div>
 
-Mesmo que a cada segundo todo o elemento que descreve a interface seja recriado, apenas o texto que contém modificações é atualizado pelo React Dom.
+Observe que mesmo que a cada segundo todo o elemento que descreve a interface seja recriado, apenas o texto que contém modificações é atualizado pelo React Dom, resultando em um maior desenpenho e menos consumo de memória.
 
 
 <h1>Components</h1>
@@ -369,7 +428,7 @@ O identificador, ou nome de um component, deve sempre ser atribuído com base em
 <h2>Props</h2>
 
 
-As Props são valores atribuídos aos components, semelhantes a parâmetros passados em instâncias de funções, sendo exatamente isso caso o component em questão seja uma function. Em class components, as props são um override da propriedade props da classe React.Component:
+As Props são valores atribuídos imutáveis aos components, semelhantes a parâmetros passados em instâncias de funções, sendo exatamente isso caso o component em questão seja uma function. Em class components, as props são um override da propriedade props da classe React.Component:
 
                                                 V
     (property) React.Component<any, any, any>.props: Readonly<any> & Readonly<{
@@ -377,10 +436,11 @@ As Props são valores atribuídos aos components, semelhantes a parâmetros pass
     }>
 
 
-Logo, para acessá-la é preciso utilizar o identificador <i>this.</i>.
+E por consequência, faz parte do component em si, Logo, para acessá-la é preciso utilizar o identificador <i>this.</i>.
 
 
 <h2>Cinclo de Vida</h2>
+
 
 
 
