@@ -30,9 +30,9 @@ Como foi dito, há formas distintas de utilizar o React, podendo ser simplesment
 <h2>Node</h2>
 
 
-Aplicações Web demandam o uso de uma série de recursos para diferentes funcionalidades, como packages e libs específicas. O Javascript, e por consequência libs como o React, que fazem uso deste, contam com o Node e seu package manager(npm) para tal. Sendo ele um host de inúmeros packages e bibliotecas de terceiros que proporcionam inúmeros recursos a serem utilizados no desenvolvimento. 
+Aplicações Web demandam o uso de uma série de recursos para diferentes funcionalidades, como packages e libs específicas. O Javascript, e por consequência libs que fazem uso deste,  como o React, contam com o Node e seu package manager(npm) para tal. Sendo ele um host de inúmeros packages e bibliotecas de terceiros que disponibilizam recursos a serem utilizados no desenvolvimento. 
 
-Dada esta necessidade, a documentação a seguir mostra como instalar o Node e define algumas características importantes da ferramenta: [Node](https://github.com/VictorSantos12/Node.js)
+Dada esta necessidade, a documentação a seguir mostra como instalar o Node, além de introduzir o básico sobre a ferramenta. Conta com detalhes mais aprofundados sobre o desenvolvimento utilizando o ambiente Node: [Node](https://github.com/VictorSantos12/Node.js)
 
 Para verificar as versões do Node e do npm instaladas, use respectivamente:
 
@@ -158,7 +158,7 @@ Considere a seguinte declaração:
     const element = <h1>Hello, world!</h1>;
 
 
-É comum pensar que a tag h1 teria o mesmo valor semântico das aspas em uma String, porém, não é o caso. O JSX matem o valor semântico de qualquer tag HTML em sua sintaxe, logo, caso a const element sofra instância, o valor acessado através dela será um header e seu children(texto nele contido). O mesmo pode ser dito de pritacamente qualquer tag HTML quando aplicada ao JSX.
+É comum pensar que a tag h1 teria o mesmo valor semântico das aspas em uma String, porém, não é o caso. O JSX matem o valor semântico de qualquer tag HTML em sua sintaxe, logo, caso a const element sofra instância, o valor acessado através dela será um header e seu children(texto nele contido). O mesmo pode ser dito de praticamente qualquer tag HTML quando aplicada ao JSX.
 
 Disso pode-se concluir que o React tranta lógica e UI como uma única coisa, definida como element ou component, onde apenas os conceitos são separados em uma estrutura pouco acoplada. Porém, apesar das fortes recomendações, o uso do JSX não é obrigatório dentro de um projeto React, o que pode ser visto no exemplo a seguir:
 
@@ -172,13 +172,13 @@ Disso pode-se concluir que o React tranta lógica e UI como uma única coisa, de
     );                                    );
 
   
-Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element, que passa a ser uma tag HTML comum quando o JSX é utilizado, e sua declaração é o suficiente para criá-lo. O segundo exemplo é como o Babel interpretária o primeiro, posteriormente o convertendo em HTML padrão, processo que será abordado a seguir.
+Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element, que passa a ser uma tag HTML comum quando o JSX é utilizado, e sua declaração é o suficiente para criá-lo. O uso do JSX também proporciona um código muito mais legível quando compadaro ao resultado obtido quando não utilizado, já pode ser facilmente interpretado por quem tiver o mínimo de conhecimento sobre Javascript e HTML.
 
 
 <h2>Babel</h2>
 
 
-Diferente do Javascript e do HTML, que são diretamente interpretados pelo navegador, o JSX necessita de um transpilador para gerar, a partir dos elementos que compõem o template, o código equivalente em Javascript e HTML comuns, tornando o React interpretável até mesmo por versões mais antigas do Internet Explorer. 
+Diferente do Javascript e do HTML, que são diretamente interpretados pelo navegador, o JSX necessita de um transpilador para gerar, a partir dos elementos que compõem o template, o código equivalente em Javascript, tornando o React interpretável até mesmo por versões mais antigas do Internet Explorer. 
 
 O React conta com várias ferramentas para suprir esta nessecidade, porém, a mais utilizada é o Babel. O Babel é famoso por compilar, ou transpilar, código ECMAScript 6 e versões mais modernas, que contam com novas funcionalidades não interpretáveis por todos os navegadores, em um código Javascript que possa ser interpretado por versões mais antigas e menos utilizadas, o que abrange a sintaxe do JSX. Esse processo pode ser visto no exemplo a seguir:
 
@@ -259,7 +259,7 @@ Senguindo a regra de uso das chaves, operações envolvendo expressões Javascri
     );
 
 
-Nno JSX, instâncias de funções também podem ser definidas como children de elementos HTML, permitindo passar,  por parâmetro, valores que serão utilizados.
+No JSX, instâncias de funções também podem ser definidas como children de elementos HTML, permitindo passar,  por parâmetro, valores que serão utilizados.
 
 
 <h2>Expressões Condicionais</h2>
@@ -286,7 +286,7 @@ Elementos HTML também podem ser retornados como valores em expressões condicio
 
 Dentre os processos da compilação de uma aplicação Web, a renderização de elementos DOM é o mais custozo, tendo que lidar com frame updating, animations, style sheet e entre outros elementos de User Interface, todos ao mesmo tempo. Assim sendo, interagir com o Document Object Model(DOM), para atualizar um elemento por exemplo, demanda muito mais tempo e consumo de memória quando comparado ao processo de interpretação em single thread de uma .js file.
 
-Divergindo dos documentos HTML diretamente rederizados pelo navegador, os React Components e os elementos que os produzem são objetos mais simples, cujo processo de interpretação é intermediado pelo próprio React, ou melhor, React DOM, que é um equivalente ao DOM, porém, otimizado para interpretar código JSX e gerar o que por fim será interpratado pelo DOM. Observe o exemplo a seguir:
+Divergindo dos documentos HTML diretamente renderizados pelo navegador, os React Components e os elementos que os produzem são objetos mais simples, cujo processo de interpretação é intermediado pelo próprio React, ou melhor, pelo React DOM, que é um equivalente ao DOM, porém, otimizado para interpretar código JSX e gerar o que por fim será interpratado pelo DOM. Observe o exemplo a seguir:
 
 
     function MyComponent() {
@@ -298,7 +298,7 @@ Divergindo dos documentos HTML diretamente rederizados pelo navegador, os React 
     }
 
 
-Os React Components em si serão mais bem abordados posteriromente, no momento o importante é entender como estes são renderizados e interpretados pelo React DOM, que no caso do exemplo acima seria:
+Os React Components em si serão mais bem abordados posteriormente, no momento o importante é entender como estes são renderizados e interpretados pelo React DOM, que no caso do exemplo acima seria o seguinte objeto:
 
     
     {
@@ -323,13 +323,13 @@ Os React Components em si serão mais bem abordados posteriromente, no momento o
 <h2>Render Method</h2>
     
 
-O React DOM conta com o render method, este que será visto em praticamente qualquer estrutura que renderize JSX elements. Ele segue a estrutura a seguir:
+O React DOM conta com o render method, este que será visto em praticamente qualquer component que renderize JSX elements. Ele segue a estrutura a seguir:
 
     
     ReactDOM.render(element, container[, callback])
 
 
-Sendo uma instância da const render, que é um dos atributos do ReactDOM, o render method recebe dois parâmetros: o elemento a ser renderizado, podendo ser apenas um ou vários agrupados em um único; e um container, que define onde a renderização irá ocorrer. A estrutura do reder method pode ser vista em detalhes a seguir:
+Sendo uma instância da const render, que é um dos atributos do ReactDOM, o render method recebe dois parâmetros: o elemento a ser renderizado, podendo ser apenas um ou vários agrupados em um único; e um container que define onde a renderização irá ocorrer. A estrutura do reder method pode ser vista em detalhes a seguir:
 
 
     const render: ReactDOM.Renderer
@@ -340,7 +340,7 @@ Sendo uma instância da const render, que é um dos atributos do ReactDOM, o ren
     ) => void (+6 overloads)
 
 
-Um detalhe importante sobre o atributo container é que em aplicações que utilizam apenas o React, sempre haverá apesas um, e é a partir dele que toda a aplicação será renderizada e gerenciada pelo React DOM. Sendo chamado de root DOM node, que basicamente é uma div com o id root, que é declarada na index.html da aplicação. O exemplo a seguir foi retirado do my-app criado anteriormente:
+Um característica importante sobre o atributo container é que em aplicações que utilizam apenas o React, sempre haverá apesas um dele, e é a partir deste que toda a aplicação será renderizada e gerenciada pelo React DOM. Sendo chamado de root DOM node, que basicamente é uma div com o id root declarada na index.html da aplicação. O exemplo a seguir pode ser observado no my-app criado anteriormente:
 
     ...
 
@@ -395,7 +395,7 @@ Observe que mesmo que a cada segundo todo o elemento que descreve a interface se
 
 Sendo um dos aspectos mais importantes da estrutura do React, a componentização permite dividir a interface em partes independentes e reutilizáveis, pondendo ser planejadas de forma individual e isolada das demais.
 
-A forma mais simples de declarar um component é criando uma função Javascript:
+A forma mais simples de declarar um React Component é criando uma função Javascript:
 
 
     function WelcomeMessage(props) {
@@ -413,7 +413,7 @@ O React também permite declarar components seguindo o modelo de classes do [ES6
     }
 
 
-Para declarar uma classe como um React component, como no exemplo acima, basicamente declaramos uma class ES6, que consiste na palavra-chave <i>class</i> seguida do <i>namespace</i>. Seguidamente, essa classe deve ser declarada como um extends(herdeira) da classe React.Components, que permite identificá-la como um component dentro do template. Nela faremos uso do método render, que irá retornar um JSX equivalente aos elementos do component, podendo ser single-line, como no exemplo acima, ou multi-line, como no exemplo a seguir:
+Para declarar uma classe como um React component, como no exemplo acima, basicamente declaramos uma class ES6, que consiste na palavra-chave <i>class</i> seguida de um <i>namespace</i>. Seguidamente, essa classe deve ser declarada como um extends(herdeira) da classe React.Components, que permite identificá-la como um component dentro do template. Nela faremos uso do método render, que irá retornar um JSX equivalente aos elementos do component, podendo ser single-line, como no exemplo acima, ou multi-line, como no exemplo a seguir:
 
 
     class MyComponent extends React.Component {
@@ -428,7 +428,7 @@ Para declarar uma classe como um React component, como no exemplo acima, basicam
     }
 
 
-Uma expressão Multi-line JSX é definida dentro de parenteses, que por sua vez carrega um único element HTML, normalmente sendo um React.Fragment, ou apenas uma tag vazia(<></>) que terá os demais como children. 
+Uma expressão Multi-line JSX é definida dentro de parenteses, que por sua vez carrega um único element HTML, normalmente sendo um React.Fragment, ou apenas uma tag vazia(<></>) que terá os demais como children, o que permite criar components mais complexos.
 
 
 <h2>Renderizando um Component</h2>
@@ -454,7 +454,7 @@ As Props são valores imutáveis atribuídos aos components, semelhantes a parâ
     }>
 
 
-Porps são essencialmente declaradas como type any, sendo passadas quando um component sofre instância, como por exemplo:
+Porps são essencialmente declaradas como type any, sendo passadas quando um component sofre uma instância, como por exemplo:
 
 
     <WelcomeMessage name="Victor" />
@@ -472,7 +472,43 @@ Caso o component em questão seja uma class, as props são acessadas através do
 <h2>Cinclo de Vida</h2>
 
 
+Como mencionado anteriormente, o uso de classes, e por conseguinte da orientação a objetos no processo de criação dos React Components, dá a esses components os chamados lifecycle methods, que sofrem um override e podem ser utilizados no processo controle de fluxo de dados atrelados ao component em questão, permitido criar um ciclo de vida para o mesmo. Os lifecycle methods podem ser divididos nos seguintes grupos:
 
+
+<h2>Mounting</h2>
+
+
+O Mounting agrupa os métodos utilizados quando a instância de um component é criada, basicamente sendo os responsáveis por inicializar as estrutura do component. Eles são chamados na seguinte ordem:
+
+
+<h3>constructor()</h3>
+
+
+O constructor method é bastante conhecido no processo de inicialização de objetos visto em POO. Mantendo a mesma função aqui, ele é o responsável por inicializar os components através dos dados obtidos das props, sendo chamado antes do processo de mounting do component ser encerrado:
+
+
+    constructor(props)
+
+
+No processo de implementação de um contructor, utilizamos um recurso chamado de super() antes de qualquer declaração, sendo basicamente uma chamado do contructor da classe Component do React, o que impede que as props sejam inicializadas como <i>Undefined</i>, evitados a ocorrencia de bugs:
+
+
+    constructor(props) {
+      super(props);
+    }
+
+<h3>static getDerivedStateFromProps()</h3>
+
+<h3>render()</h3>
+
+<h3>componentDidMount()</h3>
+
+
+<h2>Updating</h2>
+
+<h2>Unmounting</h2>
+
+<h2>Error Handling</h2>
 
 
 <h1>State</h1>
