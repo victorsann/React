@@ -24,15 +24,19 @@ Com uma estrutura declarativa e reativa baseada em components, o React possui fl
 <h2>Ambiente de Desenvolvimento</h2>
 
 
-Como foi dito, há formas distintas de utilizar o React, podendo ser simplesmente aplicado a um tag script em uma file HTML ou ter uma aplicação completamente voltada para seu uso. Tendo isso em mente, a seguir veremos como criar um projeto React, além de nos aprofundarmos nas características da ferramenta:
+Como foi dito, há formas distintas de utilizar o React, podendo ser simplesmente aplicado a um tag script em uma file HTML ou ter uma aplicação completamente voltada para seu uso. Tendo isso em mente, a seguir veremos o que é necessário para criar um projeto React, além de nos aprofundarmos nas características da ferramenta:
 
 
 <h2>Node</h2>
 
 
-Aplicações Web demandam o uso de uma série de recursos para diferentes funcionalidades, como packages e libs específicas. O Javascript, e por consequência libs que fazem uso deste,  como o React, contam com o Node e seu package manager(npm) para tal. Sendo ele um host de inúmeros packages e bibliotecas de terceiros que disponibilizam recursos a serem utilizados no desenvolvimento. 
+Aplicações Web demandam o uso de uma série de recursos para diferentes funcionalidades, como packages e libs específicas. O Javascript, e por consequência libs que fazem uso deste, como o React, contam com o Node e seu package manager(npm) para tal. Sendo ele um host de inúmeros packages e bibliotecas de terceiros que disponibilizam recursos a serem utilizados no desenvolvimento. 
 
-Dada esta necessidade, a documentação a seguir mostra como instalar o Node, além de introduzir o básico sobre a ferramenta. Conta com detalhes mais aprofundados sobre o desenvolvimento utilizando o ambiente Node: [Node](https://github.com/VictorSantos12/Node.js)
+Dada esta necessidade, a documentação a seguir mostra como instalar o Node, além de introduzir o básico sobre a ferramenta. E também conta, com mais riqueza de detalhes, como desenvolver utilizando o ambiente Node: 
+
+
+[Node](https://github.com/VictorSantos12/Node.js)
+
 
 Para verificar as versões do Node e do npm instaladas, use respectivamente:
 
@@ -172,7 +176,7 @@ Disso pode-se concluir que o React tranta lógica e UI como uma única coisa, de
     );                                    );
 
   
-Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element, que passa a ser uma tag HTML comum quando o JSX é utilizado, e sua declaração é o suficiente para criá-lo. O uso do JSX também proporciona um código muito mais legível quando compadaro ao resultado obtido quando não utilizado, já pode ser facilmente interpretado por quem tiver o mínimo de conhecimento sobre Javascript e HTML.
+Uma diferença clara entre os dois exemplos é a simplificação da sitaxe do element, que passa a ser uma tag HTML comum quando o JSX é utilizado, e sua declaração é o suficiente para criá-lo. O uso do JSX também proporciona um código muito mais legível quando compadaro ao resultado obtido quando não utilizado, já que pode ser facilmente interpretado por quem tiver o mínimo de conhecimento sobre Javascript e HTML.
 
 
 <h2>Babel</h2>
@@ -223,7 +227,7 @@ Apesar das semelhanças com o HTML, o JSX se comporta de forma diferente, permit
     );
 
 
-O que normalmente seria atrelado a um template string, é utilizado de forma conjunta com a tag, permitindo acessar valores através da sua instanciação dentro de chaves.
+O que normalmente seria atrelado a um template string, é utilizado como children da tag, permitindo acessar valores através da sua instanciação dentro de chaves.
 
 
 <h2>Operações Aritméticas</h2>
@@ -278,7 +282,7 @@ No JSX, instâncias de funções também podem ser definidas como children de el
     );
 
 
-Elementos HTML também podem ser retornados como valores em expressões condicionais.
+Elementos HTML também podem ser retornados como valores em expressões condicionais, o que torna possível manipular a UI com base em tais expressões.
 
 
 <h1>React DOM e a Renderização de Elementos</h1>
@@ -340,7 +344,7 @@ Sendo uma instância da const render, que é um dos atributos do ReactDOM, o ren
     ) => void (+6 overloads)
 
 
-Um característica importante sobre o atributo container é que em aplicações que utilizam apenas o React, sempre haverá apesas um dele, e é a partir deste que toda a aplicação será renderizada e gerenciada pelo React DOM. Sendo chamado de root DOM node, que basicamente é uma div com o id root declarada na index.html da aplicação. O exemplo a seguir pode ser observado no my-app criado anteriormente:
+Uma característica importante sobre o atributo container é que em aplicações que utilizam apenas o React, sempre haverá apesas um dele, e é a partir deste que toda a aplicação será renderizada e gerenciada pelo React DOM. Sendo chamado de root DOM node, que basicamente é uma div com o id root declarada na index.html da aplicação. O exemplo a seguir pode ser observado no my-app criado anteriormente:
 
     ...
 
@@ -413,7 +417,7 @@ O React também permite declarar components seguindo o modelo de classes do [ES6
     }
 
 
-Para declarar uma classe como um React component, como no exemplo acima, basicamente declaramos uma class ES6, que consiste na palavra-chave <i>class</i> seguida de um <i>namespace</i>. Seguidamente, essa classe deve ser declarada como um extends(herdeira) da classe React.Components, que permite identificá-la como um component dentro do template. Nela faremos uso do método render, que irá retornar um JSX equivalente aos elementos do component, podendo ser single-line, como no exemplo acima, ou multi-line, como no exemplo a seguir:
+Para declarar uma classe como um React component, como no exemplo acima, basicamente declaramos uma class ES6, que consiste na palavra-chave <i>class</i> seguida de um <i>namespace</i>. Seguidamente, essa classe deve ser declarada como um extends(herdeira) da classe React.Component, que permite identificá-la como um component dentro do template. Nela faremos uso do método render, que irá retornar um JSX equivalente aos elementos do component, podendo ser single-line, como no exemplo acima, ou multi-line, como no exemplo a seguir:
 
 
     class MyComponent extends React.Component {
@@ -428,25 +432,25 @@ Para declarar uma classe como um React component, como no exemplo acima, basicam
     }
 
 
-Uma expressão Multi-line JSX é definida dentro de parenteses, que por sua vez carrega um único element HTML, normalmente sendo um React.Fragment, ou apenas uma tag vazia(<></>) que terá os demais como children, o que permite criar components mais complexos.
+Uma expressão Multi-line JSX é definida dentro de parenteses, que por sua vez carregam um único element HTML, normalmente sendo um React.Fragment, uma div, ou apenas uma tag vazia(<></>), que irá conter os demais elementos como children.
 
 
 <h2>Renderizando um Component</h2>
 
 
-Os declarados elements no React, além de tags DOM, podem ser os chamados user-defined components, que nada mais são que uma instância de uma function ou class, equivalente a um component, dentro do tamplate. Sendo representada por uma tag que carrega o identificador do component. Por exemplo:
+Os declarados elements no React, além de tags DOM, podem ser os chamados user-defined components, que nada mais são que uma instância de uma function ou class, equivalente a um component, dentro do tamplate. Sendo representada por uma tag que carrega o <i>namespace</i> do component. Por exemplo:
 
 
-    const element = <WelcomeMessage />
+    <WelcomeMessage />
 
 
-O identificador, ou nome de um component, deve sempre ser atribuído com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado, além de seguir o camelCase como modelo de nomenclatura, que o diferencia dos elementos HTML padrão.
+O <i>namespace</i>, ou nome de um component, deve sempre ser atribuído com base em seu próprio ponto de vista, evitando levar em conta o contexto em que será utilizado, além de seguir o camelCase como modelo de nomenclatura, que o diferencia dos elementos HTML padrão.
 
 
 <h2>Props</h2>
 
 
-As Props são valores imutáveis atribuídos aos components, semelhantes a parâmetros passados em instâncias de funções, sendo exatamente isso caso o component em questão seja uma function. Em class components, as props são um override da propriedade props da classe React.Component:
+As Props são valores imutáveis atribuídos aos components, semelhantes a parâmetros passados em funções, sendo exatamente isso caso o component em questão seja uma function. Em class components, as props são um override da propriedade props da classe React.Component:
 
                                                 V
     (property) React.Component<any, any, any>.props: Readonly<any> & Readonly<{
@@ -469,54 +473,12 @@ Caso o component em questão seja uma class, as props são acessadas através do
     ...
 
 
-<h2>Cinclo de Vida</h2>
-
-
-Como mencionado anteriormente, o uso de classes, e por conseguinte da orientação a objetos no processo de criação dos React Components, dá a esses components os chamados lifecycle methods, que sofrem um override e podem ser utilizados no processo controle de fluxo de dados atrelados ao component em questão, permitido criar um ciclo de vida para o mesmo. Os lifecycle methods podem ser divididos nos seguintes grupos:
-
-
-<h2>Mounting</h2>
-
-
-O Mounting agrupa os métodos utilizados quando a instância de um component é criada, basicamente sendo os responsáveis por inicializar as estrutura do component. Eles são chamados na seguinte ordem:
-
-
-<h3>constructor()</h3>
-
-
-O constructor method é bastante conhecido no processo de inicialização de objetos visto em POO. Mantendo a mesma função aqui, ele é o responsável por inicializar os components através dos dados obtidos das props, sendo chamado antes do processo de mounting do component ser encerrado:
-
-
-    constructor(props)
-
-
-No processo de implementação de um contructor, utilizamos um recurso chamado de super() antes de qualquer declaração, sendo basicamente uma chamado do contructor da classe Component do React, o que impede que as props sejam inicializadas como <i>Undefined</i>, evitados a ocorrencia de bugs:
-
-
-    constructor(props) {
-      super(props);
-    }
-
-<h3>static getDerivedStateFromProps()</h3>
-
-<h3>render()</h3>
-
-<h3>componentDidMount()</h3>
-
-
-<h2>Updating</h2>
-
-<h2>Unmounting</h2>
-
-<h2>Error Handling</h2>
-
-
 <h1>State</h1>
 
 
 Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações, e para ter tal controle, é importante entender como aplicar e utilizar o State em um component e como o seu ciclo de vida afeta essa funcionalidade. 
 
-Em um exemplo anterior, foi visto como o React renderiza, através do Virtual DOM, especificamente os elementos que sofreram alterações; a seguir iremos entender como aplicar o State ao mesmo exemplo, o tornando ainda mais simples.
+Em um exemplo anterior, foi visto como o React renderiza, através do Virtual DOM, especificamente os elementos que sofreram alterações. Também foi mostrado uma única forma de atualizar a interface, que é utilizando o ReactDOM.render() method. A seguir iremos entender como aplicar o State ao mesmo exemplo para que ele se autogerencie e atualize a UI quando a mudança ocorrer.
 
 Considere a função, ou Component, tick anteriormente vista:
 
@@ -537,8 +499,93 @@ Considere a função, ou Component, tick anteriormente vista:
     setInterval(tick, 1000);
 
 
-Como já foi definido, a atualização neste exemplo só ocorre porque todo o component sofre um re-render a cada segundo, tempo definido no método setInterval(). Ao aplicar o state, o component será chamado apenas uma vez, se atualizando por conta própria.
+Como já foi definido, a atualização neste exemplo só ocorre porque todo o component sofre um re-render a cada segundo, tempo definido no método setInterval(). Para iniciar, faremos o processo de encapsulamento de como o component é estruturado:
 
 
+    function Clock(props) {
+      return (
+        <div>
+          <h1>Hello, world!</h1>
+          <h2>It is {props.date.toLocaleTimeString()}.</h2>
+        </div>
+      );
+    }
+    
+    function tick() {
+      ReactDOM.render(
+        <Clock date={new Date()} />,
+        document.getElementById('root')
+      );
+    }
+    
+    setInterval(tick, 1000);
+
+
+Essa atualização ainda conta com um problema, já que atualizar a UI a partir de um component específico é de responsabilidade do próprio, neste caso a função Clock. Ao aplicar o state, o component será chamado apenas uma vez, se atualizando por conta própria. Para utilizarmos o state, iremos converter a função Clock em uma classe ES6, assim sendo possível entender na prática como utilizar o state atrelado ao lifecycle de um React Component:
+
+
+    class Clock extends React.Component {
+      render() {
+        return (
+          <div>
+            <h1>Hello, world!</h1>
+            <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+          </div>
+        );
+      }
+    }
+
+
+<h1>LifeCycle</h1>
+
+
+Como mencionado anteriormente, o uso de classes, e por conseguinte da orientação a objetos no processo de criação dos React Components, dá a esses components recursos que funções não possuem: os chamados lifecycle methods. Os lifecycle methods são utilizados no processo controle de fluxo de dados atrelados ao component em questão, permitido criar um ciclo de vida para o mesmo. Os lifecycle methods podem ser divididos nos seguintes grupos:
+
+
+<h2>Mounting</h2>
+
+
+O Mounting agrupa os métodos utilizados quando a instância de um component é criada, basicamente sendo os responsáveis por inicializar as estrutura do component. Eles são chamados na seguinte ordem:
+
+
+<h3>constructor()</h3>
+
+
+O constructor method é bastante conhecido no processo de inicialização de objetos visto em POO. Mantendo a mesma função aqui, ele é o responsável por inicializar o component e seu state, sendo chamado quando o component é criado, ou seja, antes do processo de rendering:
+
+
+    constructor(props)
+
+
+<h3>static getDerivedStateFromProps()</h3>
+
+
+O método getDerivedStateFromProps é utilizado quando o state de um component depende das variações definidas pelas props
+
+
+<h3>render()</h3>
+
+
+O método render, como dito anteriormente, e sendo possível supor, é utilizado no processo de renderização dos elementos que compõem o template. Ele também é o único método obrigatório de um class component, e quando chamado, retorna um dos tipos a seguir:
+
+
+- React Elements: Normalmente elementos JSX.
+- Arrays e fragmentos: Permite retornar grupos com multiplos elementos.
+- String e numbers: Estes são renderizados como texto no DOM.
+- Booleans ou null: Normalmente utilizado quando não é necessário retornar um element ou em uma estrutura lógica.
+
+
+<h3>componentDidMount()</h3>
+
+
+<h2>Updating</h2>
+
+<h2>Unmounting</h2>
+
+<h2>Error Handling</h2>
+
+
+
+<h1>State & LifeCycle</h1>
 
 
