@@ -548,46 +548,38 @@ Como mencionado anteriormente, o uso de classes, e por conseguinte da orientaç�
 O Mounting agrupa os métodos utilizados quando a instância de um component é criada, basicamente sendo os responsáveis por inicializar as estrutura do component. Eles são chamados na seguinte ordem:
 
 
-<h3>
-[constructor](https://pt-br.reactjs.org/docs/react-component.html#constructor)
-</h3>
+- [constructor](https://pt-br.reactjs.org/docs/react-component.html#constructor)
 
+- [static getDerivedStateFromProps()]()
 
-O constructor method é bastante conhecido no processo de inicialização de objetos visto em POO. Mantendo a mesma função aqui, ele é o responsável por inicializar o component e seu state, sendo chamado quando o component é criado, ou seja, antes do processo de rendering:
+- [render()]()
 
-
-    constructor(props)
-
-
-<h3>static getDerivedStateFromProps()</h3>
-
-
-O método getDerivedStateFromProps é utilizado quando o state de um component depende das variações definidas pelas props, retornando um objeto para atualizar o state ou null. Sendo raramante utilizado, ele normalmente é substituído por outros métodos em uma sinplificação da funcionalidade.
-
-
-<h3>render()</h3>
-
-
-O método render, como dito anteriormente, é utilizado no processo de renderização dos elementos que compõem o template. Ele também é o único método obrigatório de um class component, e quando chamado, retorna um dos tipos a seguir:
-
-
-- React Elements: Normalmente elementos JSX.
-- Arrays e fragmentos: Permite retornar grupos com multiplos elementos.
-- String e numbers: Estes são renderizados como texto no DOM.
-- Booleans ou null: Normalmente utilizado quando não é necessário retornar um element ou em uma estrutura lógica.
-
-
-<h3>componentDidMount()</h3>
+- [componentDidMount()]()
 
 
 <h2>Updating</h2>
 
+
+- []()
+- []()
+- []()
+
 <h2>Unmounting</h2>
+
+
+- []()
+
 
 <h2>Error Handling</h2>
 
 
+- []()
+
 
 <h1>State & LifeCycle</h1>
+
+
+- []()
+
 
 
