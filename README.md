@@ -548,7 +548,9 @@ Como mencionado anteriormente, o uso de classes, e por conseguinte da orientaç�
 O Mounting agrupa os métodos utilizados quando a instância de um component é criada, basicamente sendo os responsáveis por inicializar as estrutura do component. Eles são chamados na seguinte ordem:
 
 
-<h3>(constructor)[https://pt-br.reactjs.org/docs/react-component.html#constructor]</h3>
+<h3>
+[constructor](https://pt-br.reactjs.org/docs/react-component.html#constructor)
+</h3>
 
 
 O constructor method é bastante conhecido no processo de inicialização de objetos visto em POO. Mantendo a mesma função aqui, ele é o responsável por inicializar o component e seu state, sendo chamado quando o component é criado, ou seja, antes do processo de rendering:
