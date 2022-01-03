@@ -288,7 +288,7 @@ Elementos HTML também podem ser retornados como valores em expressões condicio
 <h1>React DOM e a Renderização de Elementos</h1>
 
 
-Dentre os processos da compilação de uma aplicação Web, a renderização de elementos DOM é o mais custozo, tendo que lidar com frame updating, animations, style sheet e entre outros elementos de User Interface, todos ao mesmo tempo. Assim sendo, interagir com o Document Object Model(DOM), para atualizar um elemento por exemplo, demanda muito mais tempo e consumo de memória quando comparado ao processo de interpretação em single thread de uma .js file.
+Dentre os processos da compilação de uma aplicação Web, a renderização de elementos DOM é o mais custozo, tendo que lidar com frame updating, animations, style sheet e entre outros elementos de User Interface, todos ao mesmo tempo. Assim sendo, atualizar um elemento por exemplo, demanda muito mais tempo e consumo de memória quando comparado ao processo de interpretação em single thread de uma .js file.
 
 Divergindo dos documentos HTML diretamente renderizados pelo navegador, os React Components e os elementos que os produzem são objetos mais simples, cujo processo de interpretação é intermediado pelo próprio React, ou melhor, pelo React DOM, que é um equivalente ao DOM, porém, otimizado para interpretar código JSX e gerar o que por fim será interpratado pelo DOM. Observe o exemplo a seguir:
 
@@ -333,7 +333,7 @@ O React DOM conta com o render method, este que será visto em praticamente qual
     ReactDOM.render(element, container[, callback])
 
 
-Sendo uma instância da const render, que é um dos atributos do ReactDOM, o render method recebe dois parâmetros: o elemento a ser renderizado, podendo ser apenas um ou vários agrupados em um único; e um container que define onde a renderização irá ocorrer. A estrutura do reder method pode ser vista em detalhes a seguir:
+Sendo uma instância da const render, que é um dos atributos do ReactDOM, o render method recebe dois parâmetros: o elemento a ser renderizado, podendo ser apenas um ou vários agrupados em um único; e um container que define onde a renderização irá ocorrer. A estrutura do render method pode ser vista em detalhes a seguir:
 
 
     const render: ReactDOM.Renderer
@@ -403,7 +403,7 @@ A forma mais simples de declarar um React Component é criando uma função Java
 
 
     function WelcomeMessage(props) {
-      return <h1>Hello, {props.name}</h1>;
+      return <h1>Welcome, {props.name}!</h1>;
     }
 
 
@@ -458,7 +458,7 @@ As Props são valores imutáveis atribuídos aos components, semelhantes a parâ
     }>
 
 
-Porps são essencialmente declaradas como type any, sendo passadas quando um component sofre uma instância, como por exemplo:
+Props são essencialmente declaradas como type any, sendo passadas quando um component sofre uma instância, como por exemplo:
 
 
     <WelcomeMessage name="Victor" />
@@ -548,7 +548,7 @@ Como mencionado anteriormente, o uso de classes, e por conseguinte da orientaç�
 O Mounting agrupa os métodos utilizados quando a instância de um component é criada, basicamente sendo os responsáveis por inicializar as estrutura do component. Eles são chamados na seguinte ordem:
 
 
-<h3>constructor()</h3>
+<h3>(constructor)[https://pt-br.reactjs.org/docs/react-component.html#constructor]</h3>
 
 
 O constructor method é bastante conhecido no processo de inicialização de objetos visto em POO. Mantendo a mesma função aqui, ele é o responsável por inicializar o component e seu state, sendo chamado quando o component é criado, ou seja, antes do processo de rendering:
@@ -560,13 +560,13 @@ O constructor method é bastante conhecido no processo de inicialização de obj
 <h3>static getDerivedStateFromProps()</h3>
 
 
-O método getDerivedStateFromProps é utilizado quando o state de um component depende das variações definidas pelas props
+O método getDerivedStateFromProps é utilizado quando o state de um component depende das variações definidas pelas props, retornando um objeto para atualizar o state ou null. Sendo raramante utilizado, ele normalmente é substituído por outros métodos em uma sinplificação da funcionalidade.
 
 
 <h3>render()</h3>
 
 
-O método render, como dito anteriormente, e sendo possível supor, é utilizado no processo de renderização dos elementos que compõem o template. Ele também é o único método obrigatório de um class component, e quando chamado, retorna um dos tipos a seguir:
+O método render, como dito anteriormente, é utilizado no processo de renderização dos elementos que compõem o template. Ele também é o único método obrigatório de um class component, e quando chamado, retorna um dos tipos a seguir:
 
 
 - React Elements: Normalmente elementos JSX.
