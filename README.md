@@ -385,13 +385,13 @@ Considere o exemplo a seguir:
     setInterval(tick, 1000);
 
 
-Nele, a função tick, que contém a execução do método ReactDom.render(), é chamada a cada segundo, resultando em uma constante atualização da interface:
+Nele, a função tick, que contém a execução do método ReactDom.render(), é chamada a cada segundo, resultando em uma constante atualização da toLocaleTimeString, que retorna o horário no qual o component foi renderizado:
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/61476935/145409269-952df923-f079-4f03-b2db-ebb0edc8b8b2.gif">
 </div>
 
-Observe que mesmo que a cada segundo todo o elemento que descreve a interface seja recriado, apenas o texto que contém modificações é atualizado pelo React Dom, resultando em um maior desenpenho e menos consumo de memória.
+Observe que mesmo que a cada segundo todo o elemento que descreve a interface seja recriado, apenas o h2 que que contém modificações é atualizado pelo React Dom, resultando em um maior desenpenho e menos consumo de memória.
 
 
 <h1>Components</h1>
@@ -476,7 +476,7 @@ Caso o component em questão seja uma class, as props são acessadas através do
 <h1>State</h1>
 
 
-Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações, e para ter tal controle, é importante entender como aplicar e utilizar o State em um component e como o seu ciclo de vida afeta essa funcionalidade. 
+Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações, e para ter tal controle, é importante entender como aplicar e utilizar o State em um component e como o seu ciclo de vida afeta sua funcionalidade. 
 
 Em um exemplo anterior, foi visto como o React renderiza, através do Virtual DOM, especificamente os elementos que sofreram alterações. Também foi mostrado uma única forma de atualizar a interface, que é utilizando o ReactDOM.render() method. A seguir iremos entender como aplicar o State ao mesmo exemplo para que ele se autogerencie e atualize a UI quando a mudança ocorrer.
 
@@ -560,7 +560,7 @@ O Mounting agrupa os métodos utilizados quando a instância de um component é 
 <h2>Updating</h2>
 
 
-A atualização é parte essencial do ciclo de vida de um component, podendo ser causada por mudanças nas props ou no state. Os updating methods são chamados quando um re-render ocorre na seguinte ordem:
+A atualização é parte essencial do ciclo de vida de um component, podendo ser causada por mudanças nas props ou no state. Os updating methods são chamados na seguinte ordem quando um re-render ocorre:
 
 
 - [static getDerivedStateFromProps](https://pt-br.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
@@ -573,7 +573,7 @@ A atualização é parte essencial do ciclo de vida de um component, podendo ser
 <h2>Unmounting</h2>
 
 
-Quando um component encerra sua função, ou seja, chega ao fim do seu ciclo de vida sendo removido do DOM, o método a seguir é chamado:
+Quando um component encerra sua função, ou seja, chega ao fim do seu ciclo de vida, sendo removido do DOM, o método a seguir é chamado:
 
 - [componentWillUnmount](https://pt-br.reactjs.org/docs/react-component.html#componentwillunmount)
 
@@ -590,7 +590,123 @@ Para tratar possíveis erros no processo de renderização de um component, o Re
 <h1>State & LifeCycle</h1>
 
 
+Tendo entendido quais as funções dos lifeCycle methods, iremos entender como eles afetam o uso do state, além de entendermos como o uso deste recurso afeta a estrutura dos components vista anteriormente.
 
 
+<h2>Adicionando um Local State</h2>
 
+
+Voltando ao exemplo do component Clock, agora com um pouco mais de conhecimento sobre como um React.Component funciona, iremos desassociar a propriedade <i>date</i> das props, a associando a um local state em alguns passos:
+
+
+1 - Substitua <i>this.props.date</i> por <i>this.state.date</i> para que o valor mostrado em tela seja equivale ao valor do state:
+
+
+    class Clock extends React.Component {
+      render() {
+        return (
+          <div>
+           <h1>Hello, world!</h1>
+           <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+          </div>
+        )
+      }
+    }
+
+
+2 - Crie um contructor para o component seguindo as regras da documentação. Nele associe o objeto que contém um type date ao local state:
+
+
+    class Clock extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+      }
+    
+      render() {
+        return (
+          <div>
+            <h1>Hello, world!</h1>
+            <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+          </div>
+        );
+      }
+    }
+
+
+Essa atribuição equivale ao estado inicial do component quando ele for renderizado, e é este estado que será mostrado e atualizado quando desejado, ou mais especificamente, sua propriedade date. O <i>this.state</i> nada mais é que a chamada de uma propriedade padrão dos React.Components, que só pode ser chamada no contructor e que pode ou não ser utilizada. Ela recebe um objeto que pode ter um ou mais atributos, sendo eles variáveis independentes que são atualizadas de forma isolada:
+
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        posts: [],
+        comments: []
+      };
+    }
+
+
+<h2>Adicionando LifeCycle Methods</h2>
+
+
+Dentro do processo de re-renderização, é extremamente importante tornar disponíveis os recursos de memória que não são mais utilizados por components no fim do seu ciclo de vida. No exemplo que está sendo elaborado, o component Clock iniciará um timer sempre que for renderizado, ou seja, quando sofrer um mounting. Além disso, ele deve parar o time caso o document gerado a partir da sua renderização seja removido, ou seja, um unmounting.
+
+Como já foi abordado, o React possui diferentes metodos para tais situações, logo, estes irão compor nosso component:
+
+
+    class Clock extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+      }
+    
+      componentDidMount() {
+
+      }
+    
+      componentWillUnmount() {
+
+      }
+    
+      render() {
+        return (
+          <div>
+            <h1>Hello, world!</h1>
+            <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+          </div>
+        );
+      }
+    }
+
+
+O próximo passo é definir como o component irá se autogerenciar a partir de uma única renderização, ou seja, a partir da confirmação do mounting, que nesse caso é definida pelo método componentDidMount. Nele iremos criar um setInterval com uma latência de 1 segundo para que o state seja atualizado:
+
+
+    componentDidMount() {
+      this.timerID = setInterval(
+        () => this.tick(),
+        1000
+      );
+    }
+
+
+Perceba que o fluxo de atualização foi atribuído a variável timerID, que também recebe o identificador <i>this.</i> mas que, diferentemente do <i>this.props </i> ou <i> this.state</i>, é um campo generico, ou seja, não faz parte do fluxo de dados dos React.Components e pode ser adicionado livremente. Essa atribuição será importante no próximo passo, que basicamente será a definição do que irá ocorrer no processo de unmount do Clock component:
+
+
+    componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+
+
+Aqui basicamente ecerramos o timer, definindo o fim do ciclo de vida e o fim da execução. Agora, para finalizar, iremos criar o método tick, que será o responsável por atualizar o state no fim de cada intervalo de segundo:
+
+
+    tick() {
+      this.setState({
+        date: new Date()
+      });
+    }
+
+
+Aqui utilizamos um recurso bastante importante e que certamente será mais bem abordado futuramente, o setState. Ele basicamente atribui um novo valor ao state atual, que aqui será um novo timer a cada intervalo. Com isso, quando a aplicação for startada teremos o mesmo resultado de quando o exemplo foi anteriormente dado, porém, aplicando o state.
 
