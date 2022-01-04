@@ -476,11 +476,11 @@ Caso o component em questão seja uma class, as props são acessadas através do
 <h1>State</h1>
 
 
-Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações, e para ter tal controle, é importante entender como aplicar e utilizar o State em um component e como o seu ciclo de vida afeta sua funcionalidade. 
+Um dos conceitos mais importantes do React é o State, já que o controle do processo de mudança é essencial no desenvolvimento de aplicações. Para ter tal controle, é importante entender como aplicar e utilizar o State em um component e como o seu ciclo de vida afeta sua funcionalidade. 
 
-Em um exemplo anterior, foi visto como o React renderiza, através do Virtual DOM, especificamente os elementos que sofreram alterações. Também foi mostrado uma única forma de atualizar a interface, que é utilizando o ReactDOM.render() method. A seguir iremos entender como aplicar o State ao mesmo exemplo para que ele se autogerencie e atualize a UI quando a mudança ocorrer.
+Em um exemplo anterior, foi visto como o React renderiza, através do Virtual DOM, especificamente os elementos que sofreram alterações. Também foi mostrada uma única forma de atualizar a interface, que é utilizando o ReactDOM.render() method. A seguir iremos entender como aplicar o State permite com que um component se autogerencie e atualize a UI sem precisar fazer um re-render de toda a interface.
 
-Considere a função, ou Component, tick anteriormente vista:
+Considere o component tick anteriormente visto:
 
 
     function tick() {
@@ -573,7 +573,8 @@ A atualização é parte essencial do ciclo de vida de um component, podendo ser
 <h2>Unmounting</h2>
 
 
-Quando um component encerra sua função, ou seja, chega ao fim do seu ciclo de vida, sendo removido do DOM, o método a seguir é chamado:
+Quando um component encerra sua função, ou seja, quando seu ciclo de vida chega ao fim, ele sofre um unmounting. O método a seguir define o que deve ocorrer quando esse processo se inicia:
+
 
 - [componentWillUnmount](https://pt-br.reactjs.org/docs/react-component.html#componentwillunmount)
 
@@ -582,6 +583,7 @@ Quando um component encerra sua função, ou seja, chega ao fim do seu ciclo de 
 
 
 Para tratar possíveis erros no processo de renderização de um component, o React disponibiliza os seguintes métodos:
+
 
 - [static getDerivedStateFromError](https://pt-br.reactjs.org/docs/react-component.html#static-getderivedstatefromerror)
 - [componentDidCatch](https://pt-br.reactjs.org/docs/react-component.html#componentdidcatch)
@@ -614,7 +616,7 @@ Voltando ao exemplo do component Clock, agora com um pouco mais de conhecimento 
     }
 
 
-2 - Crie um contructor para o component seguindo as regras da documentação. Nele associe o objeto que contém um type date ao local state:
+2 - Crie um constructor para o component seguindo as regras da documentação. Nele associe o objeto que contém um type date ao local state:
 
 
     class Clock extends React.Component {
@@ -649,7 +651,7 @@ Essa atribuição equivale ao estado inicial do component quando ele for renderi
 <h2>Adicionando LifeCycle Methods</h2>
 
 
-Dentro do processo de re-renderização, é extremamente importante tornar disponíveis os recursos de memória que não são mais utilizados por components no fim do seu ciclo de vida. No exemplo que está sendo elaborado, o component Clock iniciará um timer sempre que for renderizado, ou seja, quando sofrer um mounting. Além disso, ele deve parar o time caso o document gerado a partir da sua renderização seja removido, ou seja, um unmounting.
+Dentro do processo de re-renderização, é extremamente importante tornar disponíveis os recursos de memória que não são mais utilizados por components no fim do seu ciclo de vida. No exemplo que está sendo elaborado, o component Clock iniciará um timer sempre que for renderizado, ou seja, quando sofrer um mounting. Além disso, ele deve parar o timer caso o document gerado a partir da sua renderização seja removido, ou seja, um unmounting.
 
 Como já foi abordado, o React possui diferentes metodos para tais situações, logo, estes irão compor nosso component:
 
@@ -708,5 +710,5 @@ Aqui basicamente ecerramos o timer, definindo o fim do ciclo de vida e o fim da 
     }
 
 
-Aqui utilizamos um recurso bastante importante e que certamente será mais bem abordado futuramente, o setState. Ele basicamente atribui um novo valor ao state atual, que aqui será um novo timer a cada intervalo. Com isso, quando a aplicação for startada teremos o mesmo resultado de quando o exemplo foi anteriormente dado, porém, aplicando o state.
+Aqui utilizamos um recurso bastante importante e que certamente será mais bem abordado futuramente, o setState. Ele basicamente atribui um novo valor ao state atual, que aqui será um novo timer a cada intervalo. Com isso, quando a aplicação for startada, teremos o mesmo resultado de quando o exemplo foi anteriormente dado, porém, tendo o state aplicando.
 
