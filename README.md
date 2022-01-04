@@ -550,36 +550,47 @@ O Mounting agrupa os métodos utilizados quando a instância de um component é 
 
 - [constructor](https://pt-br.reactjs.org/docs/react-component.html#constructor)
 
-- [static getDerivedStateFromProps()]()
+- [static getDerivedStateFromProps](https://pt-br.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
 
-- [render()]()
+- [render](https://pt-br.reactjs.org/docs/react-component.html#render)
 
-- [componentDidMount()]()
+- [componentDidMount](https://pt-br.reactjs.org/docs/react-component.html#componentdidmount)
 
 
 <h2>Updating</h2>
 
 
-- []()
-- []()
-- []()
+A atualização é parte essencial do ciclo de vida de um component, podendo ser causada por mudanças nas props ou no state. Os updating methods são chamados quando um re-render ocorre na seguinte ordem:
+
+
+- [static getDerivedStateFromProps](https://pt-br.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
+- [shouldComponentUpdate](https://pt-br.reactjs.org/docs/react-component.html#shouldcomponentupdate)
+- [render](https://pt-br.reactjs.org/docs/react-component.html#render)
+- [getSnapshotBeforeUpdate](https://pt-br.reactjs.org/docs/react-component.html#getsnapshotbeforeupdate)
+- [componentDidUpdate](https://pt-br.reactjs.org/docs/react-component.html#componentdidupdate)
+
 
 <h2>Unmounting</h2>
 
 
-- []()
+Quando um component encerra sua função, ou seja, chega ao fim do seu ciclo de vida sendo removido do DOM, o método a seguir é chamado:
+
+- [componentWillUnmount](https://pt-br.reactjs.org/docs/react-component.html#componentwillunmount)
 
 
 <h2>Error Handling</h2>
 
 
-- []()
+Para tratar possíveis erros no processo de renderização de um component, o React disponibiliza os seguintes métodos:
+
+- [static getDerivedStateFromError](https://pt-br.reactjs.org/docs/react-component.html#static-getderivedstatefromerror)
+- [componentDidCatch](https://pt-br.reactjs.org/docs/react-component.html#componentdidcatch)
 
 
 <h1>State & LifeCycle</h1>
 
 
-- []()
+
 
 
 
